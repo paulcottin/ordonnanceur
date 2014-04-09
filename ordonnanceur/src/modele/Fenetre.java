@@ -18,18 +18,21 @@ public class Fenetre extends JFrame{
 
 	private JPanel container = new JPanel();
 	private JPanel menu = new JPanel();
-	private Vue_TotalTaches vueTotalTaches = new Vue_TotalTaches();
+	private Vue_TotalTaches vueTotalTaches;
+	private Ordonnanceur ord;
 	
-	public Fenetre() {
-		super("Projet SD - Ordonnanceur de t√¢ches");
+	public Fenetre(Ordonnanceur ordonnanceur) {
+		super("Projet SD - Ordonnanceur de t‚ches");
+		this.ord = ordonnanceur;
+		vueTotalTaches = new Vue_TotalTaches(ord);
 		this.setSize(500, 600);
 		this.setLocationRelativeTo(null);
 		
 		container.setLayout(new BorderLayout());
 		
 		menu.setLayout(new BorderLayout());
-		menu.add(new Vue_Menu(), BorderLayout.NORTH);
-		menu.add(new Vue_BarreOutils(), BorderLayout.CENTER);
+		menu.add(new Vue_Menu(ord), BorderLayout.NORTH);
+		menu.add(new Vue_BarreOutils(this.ord), BorderLayout.CENTER);
 		
 		container.add(menu, BorderLayout.NORTH);
 		container.add(vueTotalTaches, BorderLayout.CENTER);
