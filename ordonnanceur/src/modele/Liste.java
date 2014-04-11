@@ -50,6 +50,8 @@ public class Liste {
 			System.out.println("Erreur --" + e.toString());
 		}
 	}
+	
+	//Ecrire ici les tris
 
 	public ArrayList<Tache> getListe() {
 		return liste;
