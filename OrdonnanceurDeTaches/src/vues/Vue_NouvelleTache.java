@@ -160,14 +160,14 @@ public class Vue_NouvelleTache extends JFrame implements Observer{
 
 		@Override
 		public void mouseEntered(MouseEvent e) {
-			if (saisieValide()) {
-				okButton.setEnabled(true);
-			}
+
 		}
 
 		@Override
 		public void mouseExited(MouseEvent e) {
-			// TODO Auto-generated method stub
+			if (saisieValide()) {
+				okButton.setEnabled(true);
+			}
 
 		}
 

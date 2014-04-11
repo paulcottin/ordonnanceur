@@ -27,7 +27,7 @@ public class Vue_TotalTaches extends JPanel implements Observer{
 		this.ord = ord;
 		this.ord.addObserver(this);
 		
-		this.setLayout(new GridLayout(20,1,0,2));//Problï¿½me car on ne a un chiffre fixe max pour l'affichage des tï¿½ches
+		this.setLayout(new GridLayout(20,1,0,2));//Problème car on ne a un chiffre fixe max pour l'affichage des tâches
 		setTitres();
 		
 		rempliTache();
