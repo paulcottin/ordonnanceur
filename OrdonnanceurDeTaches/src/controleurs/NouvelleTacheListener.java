@@ -14,6 +14,7 @@ public class NouvelleTacheListener implements ActionListener{
 		this.ord = ord;
 	}
 	
+	@SuppressWarnings("unused")
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Vue_NouvelleTache vue = new Vue_NouvelleTache(ord);

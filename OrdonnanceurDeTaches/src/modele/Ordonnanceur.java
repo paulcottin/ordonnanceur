@@ -8,6 +8,7 @@ public class Ordonnanceur extends Observable{
 	Liste liste;
 	Vue_TotalTaches vues;
 	
+	@SuppressWarnings("unused")
 	public Ordonnanceur() {
 		liste = new Liste();
 		liste.lire();

@@ -22,7 +22,7 @@ public class Fenetre extends JFrame{
 	private Ordonnanceur ord;
 	
 	public Fenetre(Ordonnanceur ordonnanceur, Vue_TotalTaches vues) {
-		super("Projet SD - Ordonnanceur de tï¿½ches");
+		super("Projet SD - Ordonnanceur de tâches");
 		this.ord = ordonnanceur;
 		vueTotalTaches = vues;
 		this.setSize(600, 600);
