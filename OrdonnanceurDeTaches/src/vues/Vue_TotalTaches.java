@@ -19,7 +19,7 @@ public class Vue_TotalTaches extends JPanel implements Observer{
 	 */
 	private static final long serialVersionUID = 1L;
 	private Ordonnanceur ord;
-	private Color Caeruleum = new Color(53, 122, 183);
+	private Color caeruleum = new Color(53, 122, 183);
 	
 	private ArrayList<Vue_Tache> taches = new ArrayList<Vue_Tache>();
 	
@@ -49,7 +49,7 @@ public class Vue_TotalTaches extends JPanel implements Observer{
 		titres.add(arriveLabel);
 		titres.add(dureeLabel);
 		titres.add(prioriteLabel);
-		titres.setBackground(Caeruleum);
+		titres.setBackground(caeruleum);
 		
 		this.add(titres);
 	}
