@@ -55,7 +55,6 @@ public class Vue_TotalTaches extends JPanel implements Observer{
 	public void rempliTache(){
 		for (Tache t : ord.getListe().getListe()) {
 			this.taches.add(new Vue_Tache(ord, t.getNumero(), t.getIntitule(), t.getArrivee(), t.getDuree(), t.getPriorite()));
-			
 		}
 	}
 	
@@ -79,5 +78,6 @@ public class Vue_TotalTaches extends JPanel implements Observer{
 
 	public void update(Observable o, Object arg) {
 		afficheTache();
+		this.revalidate();
 	}
 }

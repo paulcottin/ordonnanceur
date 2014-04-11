@@ -12,16 +12,12 @@ public class Ordonnanceur extends Observable{
 		liste = new Liste();
 		liste.lire();
 		vues = new Vue_TotalTaches(this);
-		Fenetre fen = new Fenetre(this);
+		Fenetre fen = new Fenetre(this, vues);
 	}
 	
 	public void nouvelleTache(String intitule, int duree, int priorite) {
 		liste.getListe().add(new Tache(intitule, duree, priorite));
 		vues.ajouteTache(new Tache(intitule, duree, priorite));
-		// a supprimer
-		for (Tache t : liste.getListe()) {
-			System.out.println(t.getIntitule());
-		}
 		
 		setChanged();
 		notifyObservers();
