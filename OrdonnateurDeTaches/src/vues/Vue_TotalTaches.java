@@ -26,7 +26,7 @@ public class Vue_TotalTaches extends JPanel implements Observer{
 		this.ord = ord;
 		this.ord.addObserver(this);
 		
-		this.setLayout(new GridLayout(20,1,0,2));//Problème car on ne a un chiffre fixe max pour l'affichage des tâches
+		this.setLayout(new GridLayout(20,1,0,2));//Problï¿½me car on ne a un chiffre fixe max pour l'affichage des tï¿½ches
 		setTitres();
 		
 		rempliTache();
@@ -36,11 +36,11 @@ public class Vue_TotalTaches extends JPanel implements Observer{
 	public void setTitres(){
 		JPanel titres = new JPanel();
 		titres.setLayout(new GridLayout(1, 5));
-		JLabel numeroLabel = new JLabel("Numéro"), 
-				intituleLabel = new JLabel("Intitulé"), 
-				arriveLabel = new JLabel("Arrivée"), 
-				dureeLabel = new JLabel("Durée"), 
-				prioriteLabel = new JLabel("Priorité");
+		JLabel numeroLabel = new JLabel("Numï¿½ro"), 
+				intituleLabel = new JLabel("Intitulï¿½"), 
+				arriveLabel = new JLabel("Arrivï¿½e"), 
+				dureeLabel = new JLabel("Durï¿½e"), 
+				prioriteLabel = new JLabel("Prioritï¿½");
 		
 		titres.add(numeroLabel);
 		titres.add(intituleLabel);
@@ -60,11 +60,13 @@ public class Vue_TotalTaches extends JPanel implements Observer{
 	}
 	
 	public void afficheTache(){
-	
 		for (Vue_Tache t : taches) {
 			this.add(t);
-		}
-		
+		}	
+	}
+	
+	public void ajouteTache(Tache t){
+		taches.add(new Vue_Tache(ord, t.getNumero(), t.getIntitule(), t.getArrivee(), t.getDuree(), t.getPriorite()));
 	}
 	
 	public ArrayList<Vue_Tache> getTaches() {
