@@ -18,7 +18,7 @@ public class Vue_Tache extends JPanel implements Observer{
 	 */
 	private static final long serialVersionUID = 1L;
 	private Ordonnanceur ord; 
-	private Color azurin = new Color(169, 234, 254);
+	private Color jade = new Color(135, 233, 144);
 	private JLabel numeroLabel, intituleLabel, arriveLabel, dureeLabel, prioriteLabel;
 	
 	public Vue_Tache(Ordonnanceur ord,int numero, String intitule, int arrive, int duree, int priorite){
@@ -47,16 +47,16 @@ public class Vue_Tache extends JPanel implements Observer{
 		this.add(dureeLabel);
 		this.add(prioriteLabel);
 		
-		this.setBackground(azurin);
+		this.setBackground(jade);
 		this.setPreferredSize(new Dimension(getWidth(), 20));
 	}
 
 	public Color getCouleur() {
-		return azurin;
+		return jade;
 	}
 
 	public void setCouleur(Color couleur) {
-		this.azurin = couleur;
+		this.jade = couleur;
 	}
 
 	@Override

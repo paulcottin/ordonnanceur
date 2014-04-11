@@ -25,7 +25,7 @@ public class Vue_BarreOutils extends JToolBar implements Observer{
 	
 	private JButton nouvelleTache = new JButton("Nouvelle tâche");
 	
-	String[] choixTriItems = {"FIFO", "SFJ", "RR(q)", "PR"};
+	String[] choixTriItems = {"FIFO (First In First Out)", "SFJ (Shortest Job First)", "RR(q) (Round Robin(q))", "PR (Priority)"};
 	private JComboBox<String> typeDeTri = new JComboBox<String>(choixTriItems);
 	
 	private JTextField recherche = new JTextField("Recherche");
