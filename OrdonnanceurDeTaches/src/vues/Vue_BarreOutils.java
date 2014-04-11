@@ -40,6 +40,8 @@ public class Vue_BarreOutils extends JToolBar implements Observer{
 		recherche.addActionListener(new RechercheListener());
 		recherche.addMouseListener(new rechercheMouseListener());
 		
+		setFloatable(false);
+		
 		this.add(nouvelleTache);
 		this.addSeparator();
 		this.add(typeDeTri);
