@@ -46,9 +46,9 @@ public class Vue_NouvelleTache extends JFrame implements Observer{
 	private void initialisation() {
 		numeroLabel = new JLabel("Numéro : " + Tache.compteur_numero);
 		arriveLabel = new JLabel("Arrivée : " + Tache.compteur_arrivee);
-		intituleLabel = new JLabel("Intitulé :");
-		dureeLabel = new JLabel("Durée :");
-		prioriteLabel = new JLabel("Priorité :");
+		intituleLabel = new JLabel("Intitulé : ");
+		dureeLabel = new JLabel("Durée : ");
+		prioriteLabel = new JLabel("Priorité : ");
 		
 		okButton.addActionListener(new BoutonOKNouvelleTache(this, ord));
 		okButton.setEnabled(false);
