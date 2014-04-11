@@ -21,14 +21,14 @@ import controleurs.BoutonOKNouvelleTache;
 public class Vue_NouvelleTache extends JFrame implements Observer{
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private Ordonnanceur ord;
-//	Elements graphiques
+	//	Elements graphiques
 	private JLabel numeroLabel, arriveLabel, intituleLabel, dureeLabel, prioriteLabel;
 	private JTextField intituleField = new JTextField(), dureeField = new JTextField();
 	private JComboBox<String> prioriteComboBox = new JComboBox<String>(new String[]{"Basse", "Moyenne", "Haute"});
 	private JButton okButton = new JButton("OK");
-	
+
 	public Vue_NouvelleTache(Ordonnanceur ord){
 		super("Nouvelle Tâche");
 		this.ord = ord;
@@ -37,54 +37,54 @@ public class Vue_NouvelleTache extends JFrame implements Observer{
 		this.setLocationRelativeTo(null);
 		this.setLayout(new BorderLayout());
 		this.addMouseListener(new okButtonMouseListener());
-		
+
 		initialisation();
-		
+
 		this.setVisible(true);
 	}
-	
+
 	private void initialisation() {
 		numeroLabel = new JLabel("Numéro : " + Tache.compteur_numero);
 		arriveLabel = new JLabel("Arrivée : " + Tache.compteur_arrivee);
 		intituleLabel = new JLabel("Intitulé : ");
 		dureeLabel = new JLabel("Durée : ");
 		prioriteLabel = new JLabel("Priorité : ");
-		
+
 		okButton.addActionListener(new BoutonOKNouvelleTache(this, ord));
 		okButton.setEnabled(false);
-		
+
 		agencement();
 	}
 
 	public void agencement(){
 		JPanel intitule = new JPanel();
-			intitule.setLayout(new BorderLayout());
-			intitule.add(intituleLabel, BorderLayout.NORTH);
-			intitule.add(intituleField, BorderLayout.CENTER);
-			
+		intitule.setLayout(new BorderLayout());
+		intitule.add(intituleLabel, BorderLayout.NORTH);
+		intitule.add(intituleField, BorderLayout.CENTER);
+
 		JPanel duree = new JPanel();
-			duree.setLayout(new BorderLayout());
-			duree.add(dureeLabel, BorderLayout.NORTH);
-			duree.add(dureeField, BorderLayout.CENTER);
-			
+		duree.setLayout(new BorderLayout());
+		duree.add(dureeLabel, BorderLayout.NORTH);
+		duree.add(dureeField, BorderLayout.CENTER);
+
 		JPanel priorite = new JPanel();
-			priorite.add(this.prioriteLabel);
-			priorite.add(this.prioriteComboBox);
-			
+		priorite.add(this.prioriteLabel);
+		priorite.add(this.prioriteComboBox);
+
 		JPanel grid = new JPanel();
-			grid.setLayout(new GridLayout(2,2,10,0));
-			grid.add(numeroLabel);
-			grid.add(arriveLabel);
-			grid.add(intitule);
-			grid.add(duree);
-			
+		grid.setLayout(new GridLayout(2,2,10,0));
+		grid.add(numeroLabel);
+		grid.add(arriveLabel);
+		grid.add(intitule);
+		grid.add(duree);
+
 		JPanel south = new JPanel();
-			south.setLayout(new BorderLayout());
-			south.add(priorite, BorderLayout.CENTER);
-			JPanel okButtonPanel = new JPanel();
-				okButtonPanel.add(okButton);
-			south.add(okButtonPanel, BorderLayout.SOUTH);
-			
+		south.setLayout(new BorderLayout());
+		south.add(priorite, BorderLayout.CENTER);
+		JPanel okButtonPanel = new JPanel();
+		okButtonPanel.add(okButton);
+		south.add(okButtonPanel, BorderLayout.SOUTH);
+
 		this.add(grid, BorderLayout.CENTER);
 		this.add(south, BorderLayout.SOUTH);
 	}
@@ -101,7 +101,7 @@ public class Vue_NouvelleTache extends JFrame implements Observer{
 		}
 		return true;
 	}
-	
+
 	public JButton getOkButton() {
 		return okButton;
 	}
@@ -125,7 +125,7 @@ public class Vue_NouvelleTache extends JFrame implements Observer{
 	public void setIntituleField(JTextField intituleField) {
 		this.intituleField = intituleField;
 	}
-	
+
 	public int getDuree() {
 		return Integer.valueOf(dureeField.getText());
 	}
@@ -145,7 +145,7 @@ public class Vue_NouvelleTache extends JFrame implements Observer{
 		}
 		return prio;
 	}
-	
+
 	public String getIntitule() {
 		return intituleField.getText();
 	}
@@ -155,7 +155,7 @@ public class Vue_NouvelleTache extends JFrame implements Observer{
 		@Override
 		public void mouseClicked(MouseEvent e) {
 			// TODO Auto-generated method stub
-			
+
 		}
 
 		@Override
@@ -168,27 +168,27 @@ public class Vue_NouvelleTache extends JFrame implements Observer{
 		@Override
 		public void mouseExited(MouseEvent e) {
 			// TODO Auto-generated method stub
-			
+
 		}
 
 		@Override
 		public void mousePressed(MouseEvent e) {
 			// TODO Auto-generated method stub
-			
+
 		}
 
 		@Override
 		public void mouseReleased(MouseEvent e) {
 			// TODO Auto-generated method stub
-			
+
 		}
-		
+
 	}
 
 	@Override
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
