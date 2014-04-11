@@ -3,3 +3,4 @@
 *.prefs
 *.snap
 *.resources
+.metadata/.plugins/org.eclipse.debug.ui/launchConfigurationHistory.xml
