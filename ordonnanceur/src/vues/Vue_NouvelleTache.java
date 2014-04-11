@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import modele.Ordonnanceur;
+import modele.Tache;
 import controleurs.BoutonOKNouvelleTache;
 
 public class Vue_NouvelleTache extends JFrame implements Observer{
@@ -43,8 +44,8 @@ public class Vue_NouvelleTache extends JFrame implements Observer{
 	}
 	
 	private void initialisation() {
-		numeroLabel = new JLabel("Numéro : ");
-		arriveLabel = new JLabel("Arrivé : ");
+		numeroLabel = new JLabel("Numéro : " + Tache.compteur_numero);
+		arriveLabel = new JLabel("Arrivée : " + Tache.compteur_arrivee);
 		intituleLabel = new JLabel("Intitulé :");
 		dureeLabel = new JLabel("Durée :");
 		prioriteLabel = new JLabel("Priorité :");

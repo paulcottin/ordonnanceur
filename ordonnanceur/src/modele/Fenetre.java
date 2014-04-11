@@ -25,7 +25,7 @@ public class Fenetre extends JFrame{
 		super("Projet SD - Ordonnanceur de tâches");
 		this.ord = ordonnanceur;
 		vueTotalTaches = new Vue_TotalTaches(ord);
-		this.setSize(500, 600);
+		this.setSize(600, 600);
 		this.setLocationRelativeTo(null);
 		
 		container.setLayout(new BorderLayout());

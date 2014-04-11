@@ -35,11 +35,13 @@ public class Vue_Tache extends JPanel implements Observer{
 			break;
 		case 2:
 			prioriteLabel = new JLabel("Moyenne");
+			break;
 		case 3:
 			prioriteLabel = new JLabel("Haute");
+			break;
 		}
 		
-		this.couleur = Color.GRAY;
+		this.couleur = Color.LIGHT_GRAY;
 		
 		this.setLayout(new GridLayout(1, 5));
 		this.add(numeroLabel);

@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import modele.Ordonnanceur;
+import modele.Tache;
 
 public class Vue_TotalTaches extends JPanel implements Observer{
 
@@ -27,14 +28,9 @@ public class Vue_TotalTaches extends JPanel implements Observer{
 		
 		this.setLayout(new GridLayout(20,1,0,2));//Problème car on ne a un chiffre fixe max pour l'affichage des tâches
 		setTitres();
-		Vue_Tache tache = new Vue_Tache(ord,1, "Coucou", 2, 5, 2);
-		taches.add(tache);
-		Vue_Tache tache2 = new Vue_Tache(ord,2, "Coucou2", 3, 10, 1);
-		taches.add(tache2);
 		
-		for (Vue_Tache t : taches) {
-			this.add(t);
-		}
+		rempliTache();
+		afficheTache();
 	}
 
 	public void setTitres(){
@@ -42,7 +38,7 @@ public class Vue_TotalTaches extends JPanel implements Observer{
 		titres.setLayout(new GridLayout(1, 5));
 		JLabel numeroLabel = new JLabel("Numéro"), 
 				intituleLabel = new JLabel("Intitulé"), 
-				arriveLabel = new JLabel("Arrivé"), 
+				arriveLabel = new JLabel("Arrivée"), 
 				dureeLabel = new JLabel("Durée"), 
 				prioriteLabel = new JLabel("Priorité");
 		
@@ -51,9 +47,24 @@ public class Vue_TotalTaches extends JPanel implements Observer{
 		titres.add(arriveLabel);
 		titres.add(dureeLabel);
 		titres.add(prioriteLabel);
-		titres.setBackground(Color.GRAY);
+		titres.setBackground(Color.LIGHT_GRAY);
 		
 		this.add(titres);
+	}
+	
+	public void rempliTache(){
+		for (Tache t : ord.getListe().getListe()) {
+			this.taches.add(new Vue_Tache(ord, t.getNumero(), t.getIntitule(), t.getArrivee(), t.getDuree(), t.getPriorite()));
+			
+		}
+	}
+	
+	public void afficheTache(){
+	
+		for (Vue_Tache t : taches) {
+			this.add(t);
+		}
+		
 	}
 	
 	public ArrayList<Vue_Tache> getTaches() {
@@ -64,9 +75,7 @@ public class Vue_TotalTaches extends JPanel implements Observer{
 		this.taches = taches;
 	}
 
-	@Override
 	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
-		
+		afficheTache();
 	}
 }
