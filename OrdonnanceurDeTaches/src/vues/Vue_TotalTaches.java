@@ -19,6 +19,7 @@ public class Vue_TotalTaches extends JPanel implements Observer{
 	 */
 	private static final long serialVersionUID = 1L;
 	private Ordonnanceur ord;
+	private Color Caeruleum = new Color(53, 122, 183);
 	
 	private ArrayList<Vue_Tache> taches = new ArrayList<Vue_Tache>();
 	
@@ -34,20 +35,21 @@ public class Vue_TotalTaches extends JPanel implements Observer{
 	}
 
 	public void setTitres(){
+		
 		JPanel titres = new JPanel();
 		titres.setLayout(new GridLayout(1, 5));
-		JLabel numeroLabel = new JLabel("Numï¿½ro"), 
-				intituleLabel = new JLabel("Intitulï¿½"), 
-				arriveLabel = new JLabel("Arrivï¿½e"), 
-				dureeLabel = new JLabel("Durï¿½e"), 
-				prioriteLabel = new JLabel("Prioritï¿½");
+		JLabel numeroLabel = new JLabel("Numéro"), 
+				intituleLabel = new JLabel("Intitulé"), 
+				arriveLabel = new JLabel("Arrivée"), 
+				dureeLabel = new JLabel("Durée"), 
+				prioriteLabel = new JLabel("Priorité");
 		
 		titres.add(numeroLabel);
 		titres.add(intituleLabel);
 		titres.add(arriveLabel);
 		titres.add(dureeLabel);
 		titres.add(prioriteLabel);
-		titres.setBackground(Color.LIGHT_GRAY);
+		titres.setBackground(Caeruleum);
 		
 		this.add(titres);
 	}
