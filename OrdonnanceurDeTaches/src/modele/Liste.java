@@ -51,8 +51,22 @@ public class Liste {
 		}
 	}
 	
-	//Ecrire ici les tris
+	public void fifo(Liste l){
+		
+	}
 
+	public void sfj(Liste l){
+		
+	}
+	
+	public void rr(Liste l){
+		
+	}
+	
+	public void pr(Liste l){
+		
+	}
+	
 	public ArrayList<Tache> getListe() {
 		return liste;
 	}
