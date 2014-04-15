@@ -1,33 +1,46 @@
 package vues;
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.BoxLayout;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.Scrollable;
 
 import modele.Ordonnanceur;
 import modele.Tache;
 
-public class Vue_TotalTaches extends JPanel implements Observer{
+/**
+ * 
+ * @author paul
+ *	Regarder la classe Jlist pour modifier celle ci
+ */
+public class Vue_TotalTaches extends JPanel implements Observer, Scrollable{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private Ordonnanceur ord;
-	private Color prasin = new Color(76, 166, 107);
+	private Color backgroundColor = new Color(76, 166, 107);
 	
 	private ArrayList<Vue_Tache> taches = new ArrayList<Vue_Tache>();
-	
+	//private JList<Vue_Tache> taches = new JList<Vue_Tache>();
 	public Vue_TotalTaches(Ordonnanceur ord){
 		this.ord = ord;
 		this.ord.addObserver(this);
 		
 		this.setLayout(new GridLayout(20,1,0,2));//Probl�me car on ne a un chiffre fixe max pour l'affichage des t�ches
+		//this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS)); // Grosses lignes qui diminuent en fonction du nb
+		
 		setTitres();
 		
 		rempliTache();
@@ -49,7 +62,7 @@ public class Vue_TotalTaches extends JPanel implements Observer{
 		titres.add(arriveLabel);
 		titres.add(dureeLabel);
 		titres.add(prioriteLabel);
-		titres.setBackground(prasin);
+		titres.setBackground(backgroundColor);
 		
 		this.add(titres);
 	}
@@ -64,6 +77,9 @@ public class Vue_TotalTaches extends JPanel implements Observer{
 		for (Vue_Tache t : taches) {
 			this.add(t);
 		}	
+		/*for (int i = 0; i < taches.getSize().height; i++) {
+			this.add(taches);
+		}*/
 	}
 	
 	public void ajouteTache(Tache t){
@@ -77,16 +93,53 @@ public class Vue_TotalTaches extends JPanel implements Observer{
 	public void setTaches(ArrayList<Vue_Tache> taches) {
 		this.taches = taches;
 	}
+	
 
 	public void update(Observable o, Object arg) {
 		for (int i = taches.size()-1; i > 0; i--) {
 			taches.remove(i);
 			this.remove(i);
 		}
+		/*for (int i = taches.getSize().height-1; i > 0; i--) {
+			taches.remove(i);
+			this.remove(i);
+		} essai avec JList*/
 		taches.remove(0);
 		this.revalidate();
 		rempliTache();
 		afficheTache();
 		this.revalidate();
+	}
+
+	@Override
+	public Dimension getPreferredScrollableViewportSize() {
+		// TODO Auto-generated method stub
+		return new Dimension(600, 600);
+	}
+
+	@Override
+	public int getScrollableBlockIncrement(Rectangle visibleRect,
+			int orientation, int direction) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public boolean getScrollableTracksViewportHeight() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean getScrollableTracksViewportWidth() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public int getScrollableUnitIncrement(Rectangle visibleRect,
+			int orientation, int direction) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }
