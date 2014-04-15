@@ -1,5 +1,6 @@
 package modele;
 
+import java.sql.Time;
 import java.util.Observable;
 
 import vues.Vue_BarreOutils;
@@ -46,6 +47,11 @@ public class Ordonnanceur extends Observable{
 
 	public void setBarreOutils(Vue_BarreOutils barreOutils) {
 		this.barreOutils = barreOutils;
+	}
+
+	public void incrementeTemps() {
+		Tache.setCompteurArrivee(Tache.getCompteurArrivee()+1);
+		setChanged(); notifyObservers(barreOutils);
 	}
 
 }

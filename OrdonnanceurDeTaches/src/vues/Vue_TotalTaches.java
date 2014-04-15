@@ -79,11 +79,14 @@ public class Vue_TotalTaches extends JPanel implements Observer{
 	}
 
 	public void update(Observable o, Object arg) {
-		this.taches = new ArrayList<Vue_Tache>();
+		for (int i = taches.size()-1; i > 0; i--) {
+			taches.remove(i);
+			this.remove(i);
+		}
+		taches.remove(0);
 		this.revalidate();
 		rempliTache();
 		afficheTache();
 		this.revalidate();
-		System.out.println("coucou");
 	}
 }
