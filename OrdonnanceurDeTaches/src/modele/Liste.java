@@ -52,7 +52,7 @@ public class Liste {
 	}
 	
 	/**
-	 * On trie la liste par la mÃ©thode fifo (premier arrivÃ© - premier triÃ©)
+	 * On trie la liste par la méthode fifo (premier arrivé - premier trié)
 	 */
 	public void fifo(){
 		boolean changement = true;
@@ -77,18 +77,27 @@ public class Liste {
 		}
 	}
 
+	/**
+	 * On trie la liste par la méthode sjf (les taches les plus courtes sont traitées en priorité)
+	 */
 	public void sfj(){
 		
 	}
 	
+	/**
+	 * On trie la liste par la méthode rr(q) (on trie les taches aléatoirement selon un quantum de temps q donné)
+	 */
 	public void rr(){
 		
 	}
 	
+	/**
+	 * On trie la liste par la méthode pr (on trie les taches par leur priorité)
+	 */
 	public void pr(){
 		
 	}
-	
+
 	public ArrayList<Tache> getListe() {
 		return liste;
 	}

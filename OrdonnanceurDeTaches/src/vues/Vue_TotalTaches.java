@@ -38,11 +38,11 @@ public class Vue_TotalTaches extends JPanel implements Observer{
 		
 		JPanel titres = new JPanel();
 		titres.setLayout(new GridLayout(1, 5));
-		JLabel numeroLabel = new JLabel("Num�ro"), 
-				intituleLabel = new JLabel("Intitul�"), 
-				arriveLabel = new JLabel("Arriv�e"), 
-				dureeLabel = new JLabel("Dur�e"), 
-				prioriteLabel = new JLabel("Priorit�");
+		JLabel numeroLabel = new JLabel("Num\u00E9ro"), 
+				intituleLabel = new JLabel("Intitul\u00E9"), 
+				arriveLabel = new JLabel("Arriv\u00E9e"), 
+				dureeLabel = new JLabel("Dur\u00E9e"), 
+				prioriteLabel = new JLabel("Priorit\u00E9");
 		
 		titres.add(numeroLabel);
 		titres.add(intituleLabel);

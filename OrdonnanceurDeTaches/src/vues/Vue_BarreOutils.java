@@ -23,7 +23,7 @@ public class Vue_BarreOutils extends JToolBar implements Observer{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private JButton nouvelleTache = new JButton("Nouvelle t�che");
+	private JButton nouvelleTache = new JButton("Nouvelle t\u00e2che");
 	
 	String[] choixTriItems = {"FIFO (First In First Out)", "SFJ (Shortest Job First)", "RR(q) (Round Robin(q))", "PR (Priority)"};
 	private JComboBox<String> typeDeTri = new JComboBox<String>(choixTriItems);
