@@ -23,7 +23,7 @@ public class Vue_BarreOutils extends JToolBar implements Observer{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private JButton nouvelleTache = new JButton("Nouvelle tâche");
+	private JButton nouvelleTache = new JButton("Nouvelle tï¿½che");
 	
 	String[] choixTriItems = {"FIFO (First In First Out)", "SFJ (Shortest Job First)", "RR(q) (Round Robin(q))", "PR (Priority)"};
 	private JComboBox<String> typeDeTri = new JComboBox<String>(choixTriItems);
@@ -36,7 +36,7 @@ public class Vue_BarreOutils extends JToolBar implements Observer{
 		this.ord = ord;
 		ord.addObserver(this);
 		nouvelleTache.addActionListener(new NouvelleTacheListener(this.ord));
-		typeDeTri.addActionListener(new ChoixTriListener());
+		typeDeTri.addActionListener(new ChoixTriListener(this.ord));
 		recherche.addActionListener(new RechercheListener());
 		recherche.addMouseListener(new rechercheMouseListener());
 		
@@ -87,6 +87,14 @@ public class Vue_BarreOutils extends JToolBar implements Observer{
 			
 		}
 		
+	}
+
+	public JComboBox<String> getTypeDeTri() {
+		return typeDeTri;
+	}
+
+	public void setTypeDeTri(JComboBox<String> typeDeTri) {
+		this.typeDeTri = typeDeTri;
 	}
 
 }

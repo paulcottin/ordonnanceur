@@ -21,8 +21,8 @@ public class Fenetre extends JFrame{
 	private Vue_TotalTaches vueTotalTaches;
 	private Ordonnanceur ord;
 	
-	public Fenetre(Ordonnanceur ordonnanceur, Vue_TotalTaches vues) {
-		super("Projet SD - Ordonnanceur de tâches");
+	public Fenetre(Ordonnanceur ordonnanceur, Vue_TotalTaches vues, Vue_BarreOutils barreOutils) {
+		super("Projet SD - Ordonnanceur de tï¿½ches");
 		this.ord = ordonnanceur;
 		vueTotalTaches = vues;
 		this.setSize(600, 600);
@@ -32,7 +32,7 @@ public class Fenetre extends JFrame{
 		
 		menu.setLayout(new BorderLayout());
 		menu.add(new Vue_Menu(ord), BorderLayout.NORTH);
-		menu.add(new Vue_BarreOutils(this.ord), BorderLayout.CENTER);
+		menu.add(barreOutils , BorderLayout.CENTER);
 		
 		container.add(menu, BorderLayout.NORTH);
 		container.add(vueTotalTaches, BorderLayout.CENTER);

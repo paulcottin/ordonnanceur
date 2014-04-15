@@ -20,10 +20,10 @@ public class Tache {
 	}
 	
 	public Tache(int numero, String intitule, int arrivee, int duree, int priorite){
-		this.numero = compteur_numero;
+		this.numero = numero;
 		this.intitule = intitule;
 		this.duree = duree;
-		this.arrivee = compteur_arrivee;
+		this.arrivee = arrivee;
 		this.priorite = priorite;
 		compteur_numero++;
 		compteur_arrivee++;

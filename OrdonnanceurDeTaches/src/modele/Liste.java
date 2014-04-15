@@ -51,19 +51,41 @@ public class Liste {
 		}
 	}
 	
-	public void fifo(Liste l){
-		
+	/**
+	 * On trie la liste par la méthode fifo (premier arrivé - premier trié)
+	 */
+	public void fifo(){
+		boolean changement = true;
+		while (changement) {
+			changement = false;
+			for (int i = 0; i < liste.size() -1; i++) {
+				if (liste.get(i).getArrivee() > liste.get(i+1).getArrivee()) {
+					Tache temp = liste.get(i+1);
+					liste.set(i+1, liste.get(i));
+					liste.set(i, temp);
+					changement = true;
+				}
+				else if (liste.get(i).getArrivee() == liste.get(i+1).getArrivee()) {
+					if (liste.get(i).getNumero() > liste.get(i+1).getNumero()) {
+						Tache temp = liste.get(i+1);
+						liste.set(i+1, liste.get(i));
+						liste.set(i, temp);
+						changement = true;
+					}
+				}
+			}
+		}
 	}
 
-	public void sfj(Liste l){
+	public void sfj(){
 		
 	}
 	
-	public void rr(Liste l){
+	public void rr(){
 		
 	}
 	
-	public void pr(Liste l){
+	public void pr(){
 		
 	}
 	
