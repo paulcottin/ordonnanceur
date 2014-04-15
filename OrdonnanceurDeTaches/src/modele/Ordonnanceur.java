@@ -1,6 +1,5 @@
 package modele;
 
-import java.sql.Time;
 import java.util.Observable;
 
 import vues.Vue_BarreOutils;
@@ -21,8 +20,9 @@ public class Ordonnanceur extends Observable{
 	}
 	
 	public void nouvelleTache(String intitule, int duree, int priorite) {
-		liste.getListe().add(new Tache(intitule, duree, priorite));
-		vues.ajouteTache(new Tache(intitule, duree, priorite));
+		Tache t = new Tache(intitule, duree, priorite);
+		liste.getListe().add(t);
+		vues.ajouteTache(t);
 		
 		setChanged();
 		notifyObservers();
