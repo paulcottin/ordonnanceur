@@ -93,7 +93,11 @@ public class Vue_TotalTaches extends JPanel implements Observer, Scrollable{
 	
 
 	public void update(Observable o, Object arg) {
-		for (int i = taches.size()-1; i > 0; i--) {
+		
+		if (this.getComponentCount() > taches.size()) {
+			this.remove(taches.size());
+		}
+		for (int i = taches.size()-1; i >0; i--) {
 			taches.remove(i);
 			this.remove(i);
 		}
@@ -102,6 +106,7 @@ public class Vue_TotalTaches extends JPanel implements Observer, Scrollable{
 			this.remove(i);
 		} essai avec JList*/
 		taches.remove(0);
+		
 		this.revalidate();
 		rempliTache();
 		afficheTache();
