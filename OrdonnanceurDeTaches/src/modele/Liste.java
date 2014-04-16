@@ -9,6 +9,8 @@ import java.util.ArrayList;
 
 public class Liste {
 	ArrayList<Tache> liste;
+	ArrayList<Integer> fin;
+	ArrayList<Integer> restant;
 
 	public Liste(){
 		liste = new ArrayList<Tache>();
@@ -50,7 +52,7 @@ public class Liste {
 			System.out.println("Erreur --" + e.toString());
 		}
 	}
-	
+
 	/**
 	 * On trie la liste par la méthode fifo (premier arrivé - premier trié)
 	 */
@@ -81,21 +83,44 @@ public class Liste {
 	 * On trie la liste par la méthode sjf (les taches les plus courtes sont traitées en priorité)
 	 */
 	public void sfj(){
-		
+		boolean changement = true;
+		fin = new ArrayList<Integer>();
+		restant = new ArrayList<Integer>();
+		while (changement) {
+			changement = false;
+			for (int i = 0; i < liste.size() -1; i++) {
+				fin.add(liste.get(i).getArrivee() + liste.get(i).getDuree());
+				restant.add(fin.get(i) - liste.get(i).getArrivee());
+				if (restant.get(i) > restant.get(i+1)) {
+					Tache temp = liste.get(i+1);
+					liste.set(i+1, liste.get(i));
+					liste.set(i, temp);
+					changement = true;
+				}
+				else if (restant.get(i) == restant.get(i+1)) {
+					if (liste.get(i).getNumero() > liste.get(i+1).getNumero()) {
+						Tache temp = liste.get(i+1);
+						liste.set(i+1, liste.get(i));
+						liste.set(i, temp);
+						changement = true;
+					}
+				}
+			}
+		}
 	}
-	
+
 	/**
 	 * On trie la liste par la méthode rr(q) (on trie les taches aléatoirement selon un quantum de temps q donné)
 	 */
 	public void rr(){
-		
+
 	}
-	
+
 	/**
 	 * On trie la liste par la méthode pr (on trie les taches par leur priorité)
 	 */
 	public void pr(){
-		
+
 	}
 
 	public ArrayList<Tache> getListe() {

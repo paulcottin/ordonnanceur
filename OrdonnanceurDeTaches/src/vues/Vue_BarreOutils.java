@@ -1,21 +1,17 @@
 package vues;
 
-import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 
-import modele.Liste;
 import modele.Ordonnanceur;
 import modele.Tache;
 import controleurs.ChoixTriListener;
