@@ -82,7 +82,7 @@ public class Liste {
 	/**
 	 * On trie la liste par la méthode sjf (les taches les plus courtes sont traitées en priorité)
 	 */
-	public void sfj(){
+	public void sjf(){
 		boolean changement = true;
 		fin = new ArrayList<Integer>();
 		restant = new ArrayList<Integer>();

@@ -30,7 +30,14 @@ public class Ordonnanceur extends Observable{
 	
 	public void fifo(){
 		liste.fifo();
-		setChanged();notifyObservers();
+		setChanged();
+		notifyObservers();
+	}
+	
+	public void sjf(){
+		liste.sjf();
+		setChanged();
+		notifyObservers();
 	}
 
 	public Liste getListe() {
