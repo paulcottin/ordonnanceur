@@ -53,7 +53,7 @@ public class Ordonnanceur extends Observable{
 	}
 	
 	public void pfifo(){
-		liste.fifo();
+		liste.pfifo();
 		setChanged();
 		notifyObservers();
 	}

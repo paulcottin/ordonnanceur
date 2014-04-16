@@ -20,7 +20,6 @@ public class ChoixTriListener implements ActionListener{
 			ord.fifo();
 		}
 		else if (ord.getBarreOutils().getTypeDeTri().getSelectedItem().equals("SFJ (Shortest Job First)")) {
-			System.out.println("coucou");
 			ord.sjf();
 		}
 		else if (ord.getBarreOutils().getTypeDeTri().getSelectedItem().equals("RR(q) (Round Robin(q))")) {
@@ -28,6 +27,12 @@ public class ChoixTriListener implements ActionListener{
 		}
 		else if (ord.getBarreOutils().getTypeDeTri().getSelectedItem().equals("PR (Priority)")) {
 			ord.pr();
+		}
+		else if (ord.getBarreOutils().getTypeDeTri().getSelectedItem().equals("PFIFO (Preremptive First In First Out)")) {
+			ord.pfifo();
+		}
+		else if (ord.getBarreOutils().getTypeDeTri().getSelectedItem().equals("SRT (Shortest Remaining Time)")) {
+			ord.srt();
 		}
 	}
 

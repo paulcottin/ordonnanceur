@@ -54,7 +54,7 @@ public class Liste {
 	}
 
 	/**
-	 * On trie la liste par la mï¿½thode fifo (premier arrivï¿½ - premier triï¿½)
+	 * On trie la liste par la méthode fifo (premier arrivé - premier trié)
 	 */
 	public void fifo(){
 		boolean changement = true;
