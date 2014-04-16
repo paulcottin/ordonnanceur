@@ -19,7 +19,8 @@ public class ChoixTriListener implements ActionListener{
 		if (ord.getBarreOutils().getTypeDeTri().getSelectedItem().equals("FIFO (First In First Out)")) {
 			ord.fifo();
 		}
-		else if (ord.getBarreOutils().getTypeDeTri().getSelectedItem().equals("SJF (Shortest Job First)")) {
+		else if (ord.getBarreOutils().getTypeDeTri().getSelectedItem().equals("SFJ (Shortest Job First)")) {
+			System.out.println("coucou");
 			ord.sjf();
 		}
 		else if (ord.getBarreOutils().getTypeDeTri().getSelectedItem().equals("RR(q) (Round Robin(q))")) {

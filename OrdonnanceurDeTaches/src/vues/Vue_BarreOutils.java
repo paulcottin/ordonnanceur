@@ -27,7 +27,7 @@ public class Vue_BarreOutils extends JToolBar implements Observer{
 	private static final long serialVersionUID = 1L;
 	
 	private JButton nouvelleTache = new JButton("Nouvelle t\u00e2che");
-	private JButton timer;
+	private JButton timerPlus, timerMoins;
 	private JLabel timerLabel;
 	
 	String[] choixTriItems = {"FIFO (First In First Out)", "SFJ (Shortest Job First)", "RR(q) (Round Robin(q))", "PR (Priority)"};
@@ -41,12 +41,14 @@ public class Vue_BarreOutils extends JToolBar implements Observer{
 		this.ord = ord;
 		ord.addObserver(this);
 		
-		timer = new JButton("+");
-		timerLabel = new JLabel(String.valueOf(Tache.getCompteurArrivee()));
+		timerPlus = new JButton("+");
+		timerLabel= new JLabel(String.valueOf(Tache.getCompteurArrivee()));
+		timerMoins = new JButton("-");
 		
 		nouvelleTache.addActionListener(new NouvelleTacheListener(this.ord));
 		typeDeTri.addActionListener(new ChoixTriListener(this.ord));
-		timer.addActionListener(new TimerListener(this.ord));
+		timerPlus.addActionListener(new TimerListener(this.ord));
+		timerMoins.addActionListener(new TimerListener(this.ord));
 		recherche.addActionListener(new RechercheListener());
 		recherche.addMouseListener(new rechercheMouseListener());
 		
@@ -56,8 +58,11 @@ public class Vue_BarreOutils extends JToolBar implements Observer{
 		this.addSeparator();
 		this.add(typeDeTri);
 		this.addSeparator();
-		this.add(timer);
+		this.add(timerMoins);
+		this.addSeparator();
 		this.add(timerLabel);
+		this.addSeparator();
+		this.add(timerPlus);
 		this.addSeparator(new Dimension(75, getHeight()));
 		this.add(recherche);
 		
@@ -110,6 +115,22 @@ public class Vue_BarreOutils extends JToolBar implements Observer{
 
 	public void setTypeDeTri(JComboBox<String> typeDeTri) {
 		this.typeDeTri = typeDeTri;
+	}
+
+	public JButton getTimerPlus() {
+		return timerPlus;
+	}
+
+	public void setTimerPlus(JButton timerPlus) {
+		this.timerPlus = timerPlus;
+	}
+
+	public JButton getTimerMoins() {
+		return timerMoins;
+	}
+
+	public void setTimerMoins(JButton timerMoins) {
+		this.timerMoins = timerMoins;
 	}
 
 }

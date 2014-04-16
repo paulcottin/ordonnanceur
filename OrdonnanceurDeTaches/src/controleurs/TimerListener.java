@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import modele.Ordonnanceur;
+import modele.Tache;
 
 public class TimerListener implements ActionListener{
 
@@ -16,7 +17,12 @@ public class TimerListener implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		this.ord.incrementeTemps();
+		if (e.getSource().equals(ord.getBarreOutils().getTimerPlus())) {
+			this.ord.incrementeTemps();
+		}
+		else if (e.getSource().equals(ord.getBarreOutils().getTimerMoins()) && Tache.getCompteurArrivee() > 1) {
+			this.ord.decrementeTemps();
+		}
 	}
 
 }

@@ -72,5 +72,10 @@ public class Ordonnanceur extends Observable{
 		Tache.setCompteurArrivee(Tache.getCompteurArrivee()+1);
 		setChanged(); notifyObservers(barreOutils);
 	}
+	
+	public void decrementeTemps(){
+		Tache.setCompteurArrivee(Tache.getCompteurArrivee()-1);
+		setChanged(); notifyObservers();
+	}
 
 }

@@ -54,7 +54,7 @@ public class Liste {
 	}
 
 	/**
-	 * On trie la liste par la méthode fifo (premier arrivé - premier trié)
+	 * On trie la liste par la mï¿½thode fifo (premier arrivï¿½ - premier triï¿½)
 	 */
 	public void fifo(){
 		boolean changement = true;
@@ -80,9 +80,9 @@ public class Liste {
 	}
 
 	/**
-	 * On trie la liste par la méthode sjf (les taches les plus courtes sont traitées en priorité)
+	 * On trie la liste par la mï¿½thode sjf (les taches les plus courtes sont traitï¿½es en prioritï¿½)
 	 */
-	public void sjf(){
+	/*public void sjf(){
 		boolean changement = true;
 		fin = new ArrayList<Integer>();
 		restant = new ArrayList<Integer>();
@@ -107,17 +107,42 @@ public class Liste {
 				}
 			}
 		}
-	}
+	}*/
 
 	/**
-	 * On trie la liste par la méthode rr(q) (on trie les taches aléatoirement selon un quantum de temps q donné)
+	 * On trie la liste par la mï¿½thode rr(q) (on trie les taches alï¿½atoirement selon un quantum de temps q donnï¿½)
 	 */
+	
+	public void sjf(){
+		boolean changement = true;
+		while (changement) {
+			changement = false;
+			for (int i = 0; i < liste.size() -1; i++) {
+				if ((liste.get(i).getDuree()- (Tache.getCompteurArrivee()-liste.get(i).getArrivee())) > (liste.get(i+1).getDuree()- (Tache.getCompteurArrivee()-liste.get(i+1).getArrivee()))) {
+					Tache temp = liste.get(i+1);
+					liste.set(i+1, liste.get(i));
+					liste.set(i, temp);
+					changement = true;
+				}
+				/*Quel critÃ¨re suivant de tri ?*/
+				else if (liste.get(i).getArrivee() == liste.get(i+1).getArrivee()) {
+					if (liste.get(i).getNumero() > liste.get(i+1).getNumero()) {
+						Tache temp = liste.get(i+1);
+						liste.set(i+1, liste.get(i));
+						liste.set(i, temp);
+						changement = true;
+					}
+				}
+			}
+		}
+	}
+	
 	public void rr(){
 
 	}
 
 	/**
-	 * On trie la liste par la méthode pr (on trie les taches par leur priorité)
+	 * On trie la liste par la mï¿½thode pr (on trie les taches par leur prioritï¿½)
 	 */
 	public void pr(){
 
