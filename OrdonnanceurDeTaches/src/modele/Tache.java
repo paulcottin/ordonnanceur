@@ -16,7 +16,6 @@ public class Tache {
 		this.arrivee = compteur_arrivee;
 		this.priorite = priorite;
 		compteur_numero++;
-		compteur_arrivee++;
 	}
 	
 	public Tache(int numero, String intitule, int arrivee, int duree, int priorite){
@@ -26,7 +25,6 @@ public class Tache {
 		this.arrivee = arrivee;
 		this.priorite = priorite;
 		compteur_numero++;
-		compteur_arrivee++;
 	}
 
 	public int getCompteurNumero() {

@@ -20,7 +20,7 @@ public class TimerListener implements ActionListener{
 		if (e.getSource().equals(ord.getBarreOutils().getTimerPlus())) {
 			this.ord.incrementeTemps();
 		}
-		else if (e.getSource().equals(ord.getBarreOutils().getTimerMoins()) && Tache.getCompteurArrivee() > 1) {
+		else if (e.getSource().equals(ord.getBarreOutils().getTimerMoins()) && Tache.getCompteurArrivee() > 0) {
 			this.ord.decrementeTemps();
 		}
 	}
