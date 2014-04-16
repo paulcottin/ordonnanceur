@@ -30,7 +30,7 @@ public class Vue_NouvelleTache extends JFrame implements Observer{
 	private JButton okButton = new JButton("OK");
 
 	public Vue_NouvelleTache(Ordonnanceur ord){
-		super("Nouvelle Tâche");
+		super("Nouvelle T\u00e2che");
 		this.ord = ord;
 		this.ord.addObserver(this);
 		this.setSize(300, 200);
@@ -44,11 +44,11 @@ public class Vue_NouvelleTache extends JFrame implements Observer{
 	}
 
 	private void initialisation() {
-		numeroLabel = new JLabel("Numéro : " + Tache.compteur_numero);
-		arriveLabel = new JLabel("Arrivée : " + Tache.compteur_arrivee);
-		intituleLabel = new JLabel("Intitulé : ");
-		dureeLabel = new JLabel("Durée : ");
-		prioriteLabel = new JLabel("Priorité : ");
+		numeroLabel = new JLabel("Num\u00E9ro : " + Tache.compteur_numero);
+		arriveLabel = new JLabel("Arriv\u00E9e : " + Tache.compteur_arrivee);
+		intituleLabel = new JLabel("Intitul\u00E9 : ");
+		dureeLabel = new JLabel("Dur\u00E9e : ");
+		prioriteLabel = new JLabel("Priorit\u00E9 : ");
 
 		okButton.addActionListener(new BoutonOKNouvelleTache(this, ord));
 		okButton.setEnabled(false);

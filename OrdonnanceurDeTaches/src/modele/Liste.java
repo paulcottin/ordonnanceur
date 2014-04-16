@@ -112,7 +112,7 @@ public class Liste {
 	/**
 	 * On trie la liste par la mï¿½thode rr(q) (on trie les taches alï¿½atoirement selon un quantum de temps q donnï¿½)
 	 */
-	
+
 	public void sjf(){
 		boolean changement = true;
 		while (changement) {
@@ -124,7 +124,7 @@ public class Liste {
 					liste.set(i, temp);
 					changement = true;
 				}
-				/*Quel critÃ¨re suivant de tri ?*/
+				/* Quel critère suivant de tri ? */
 				else if (liste.get(i).getArrivee() == liste.get(i+1).getArrivee()) {
 					if (liste.get(i).getNumero() > liste.get(i+1).getNumero()) {
 						Tache temp = liste.get(i+1);
@@ -136,16 +136,35 @@ public class Liste {
 			}
 		}
 	}
-	
+
 	public void rr(){
 
 	}
 
 	/**
-	 * On trie la liste par la mï¿½thode pr (on trie les taches par leur prioritï¿½)
+	 * On trie la liste par la méthode pr (on trie les taches par leur priorité)
 	 */
 	public void pr(){
-
+		boolean changement = true;
+		while (changement) {
+			changement = false;
+			for (int i = 0; i < liste.size() -1; i++) {
+				if (liste.get(i).getPriorite() < liste.get(i+1).getPriorite()) {
+					Tache temp = liste.get(i+1);
+					liste.set(i+1, liste.get(i));
+					liste.set(i, temp);
+					changement = true;
+				}
+				else if (liste.get(i).getPriorite() == liste.get(i+1).getPriorite()) {
+					if (liste.get(i).getNumero() > liste.get(i+1).getNumero()) {
+						Tache temp = liste.get(i+1);
+						liste.set(i+1, liste.get(i));
+						liste.set(i, temp);
+						changement = true;
+					}
+				}
+			}
+		}
 	}
 
 	public ArrayList<Tache> getListe() {
