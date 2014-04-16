@@ -51,6 +51,18 @@ public class Ordonnanceur extends Observable{
 		setChanged();
 		notifyObservers();
 	}
+	
+	public void pfifo(){
+		liste.fifo();
+		setChanged();
+		notifyObservers();
+	}
+	
+	public void srt(){
+		liste.srt();
+		setChanged();
+		notifyObservers();
+	}
 
 	public Liste getListe() {
 		return liste;

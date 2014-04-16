@@ -30,7 +30,7 @@ public class Vue_BarreOutils extends JToolBar implements Observer{
 	private JButton timerPlus, timerMoins;
 	private JLabel timerLabel;
 	
-	String[] choixTriItems = {"FIFO (First In First Out)", "SFJ (Shortest Job First)", "RR(q) (Round Robin(q))", "PR (Priority)"};
+	String[] choixTriItems = {"FIFO (First In First Out)", "SFJ (Shortest Job First)", "RR(q) (Round Robin(q))", "PR (Priority)", "PFIFO (Preremptive First In First Out)", "SRT (Shortest Remaining Time)"};
 	private JComboBox<String> typeDeTri = new JComboBox<String>(choixTriItems);
 	
 	private JTextField recherche = new JTextField("Recherche");
