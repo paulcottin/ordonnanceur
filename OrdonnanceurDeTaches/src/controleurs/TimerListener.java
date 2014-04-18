@@ -23,6 +23,7 @@ public class TimerListener implements ActionListener{
 		else if (e.getSource().equals(ord.getBarreOutils().getTimerMoins()) && Tache.getCompteurArrivee() > 0) {
 			this.ord.decrementeTemps();
 		}
+		ord.getListe().miseAJour();
 	}
 
 }

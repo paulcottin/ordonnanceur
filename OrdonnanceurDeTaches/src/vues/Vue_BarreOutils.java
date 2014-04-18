@@ -63,7 +63,7 @@ public class Vue_BarreOutils extends JToolBar implements Observer{
 		this.add(timerLabel);
 		this.addSeparator();
 		this.add(timerPlus);
-		this.addSeparator(new Dimension(75, getHeight()));
+		this.addSeparator();
 		this.add(recherche);
 		
 		

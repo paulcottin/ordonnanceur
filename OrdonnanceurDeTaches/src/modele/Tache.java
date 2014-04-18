@@ -1,12 +1,14 @@
 package modele;
 
 public class Tache {
+	public static int ATTENTE = 0, TRAITEMENT = 1, TRAITE = 2;
 	public static int compteur_numero = 1;
 	private int numero;
 	private String intitule;
 	private int duree;
 	private int priorite;
 	private int arrivee;
+	private int etat;
 	public static int compteur_arrivee = 0;
 	
 	public Tache(String intitule, int duree, int priorite){
@@ -15,6 +17,7 @@ public class Tache {
 		this.duree = duree;
 		this.arrivee = compteur_arrivee;
 		this.priorite = priorite;
+		this.etat = ATTENTE; // Par défault une tâche crée est en attente.
 		compteur_numero++;
 	}
 	
@@ -24,7 +27,12 @@ public class Tache {
 		this.duree = duree;
 		this.arrivee = arrivee;
 		this.priorite = priorite;
+		this.etat = ATTENTE; // Par défault une tâche crée est en attente.
 		compteur_numero++;
+	}
+	
+	public int tempsRestant(){
+		return duree - (compteur_arrivee - arrivee);
 	}
 
 	public int getCompteurNumero() {
@@ -81,6 +89,14 @@ public class Tache {
 
 	public static void setCompteurArrivee(int compteur_arrivee) {
 		Tache.compteur_arrivee = compteur_arrivee;
+	}
+
+	public int getEtat() {
+		return etat;
+	}
+
+	public void setEtat(int etat) {
+		this.etat = etat;
 	}
 	
 }

@@ -65,8 +65,13 @@ public class Vue_TotalTaches extends JPanel implements Observer, Scrollable{
 	}
 	
 	public void rempliTache(){
+		boolean premier = true;
 		for (Tache t : ord.getListe().getListe()) {
-			this.taches.add(new Vue_Tache(ord, t.getNumero(), t.getIntitule(), t.getArrivee(), t.getDuree(), t.getPriorite()));
+			if (premier) {
+				t.setEtat(Tache.TRAITEMENT);
+				premier = false;
+			}
+			this.taches.add(new Vue_Tache(ord, t.getNumero(), t.getIntitule(), t.getArrivee(), t.getDuree(), t.getPriorite(), t.getEtat()));
 		}
 	}
 	
@@ -80,7 +85,7 @@ public class Vue_TotalTaches extends JPanel implements Observer, Scrollable{
 	}
 	
 	public void ajouteTache(Tache t){
-		taches.add(new Vue_Tache(ord, t.getNumero(), t.getIntitule(), t.getArrivee(), t.getDuree(), t.getPriorite()));
+		taches.add(new Vue_Tache(ord, t.getNumero(), t.getIntitule(), t.getArrivee(), t.getDuree(), t.getPriorite(), t.getEtat()));
 	}
 	
 	public ArrayList<Vue_Tache> getTaches() {

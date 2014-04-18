@@ -7,6 +7,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 
+import org.omg.CORBA.portable.IndirectionException;
+
 public class Liste {
 	ArrayList<Tache> liste;
 	ArrayList<Integer> fin;
@@ -54,7 +56,7 @@ public class Liste {
 	}
 
 	/**
-	 * On trie la liste par la méthode fifo (premier arrivé - premier trié)
+	 * On trie la liste par la mï¿½thode fifo (premier arrivï¿½ - premier triï¿½)
 	 */
 	public void fifo(){
 		boolean changement = true;
@@ -80,7 +82,7 @@ public class Liste {
 	}
 
 	/**
-	 * On trie la liste par la méthode SJF
+	 * On trie la liste par la mï¿½thode SJF
 	 */
 	public void sjf(){
 		boolean changement = true;
@@ -106,14 +108,14 @@ public class Liste {
 	}
 
 	/**
-	 * On trie la liste par la méthode rr
+	 * On trie la liste par la mï¿½thode rr
 	 */
 	public void rr(){
 
 	}
 
 	/**
-	 * On trie la liste par la méthode pr (on trie les taches par leur priorité)
+	 * On trie la liste par la mï¿½thode pr (on trie les taches par leur prioritï¿½)
 	 */
 	public void pr(){
 		boolean changement = true;
@@ -139,7 +141,7 @@ public class Liste {
 	}
 	
 	/**
-	 * On trie la liste par la méthode pfifo
+	 * On trie la liste par la mï¿½thode pfifo
 	 */
 	public void pfifo(){
 		boolean changement = true;
@@ -199,13 +201,13 @@ public class Liste {
 		while (changement) {
 			changement = false;
 			for (int i = 0; i < liste.size() -1; i++) {
-				if ((liste.get(i).getDuree()- (Tache.getCompteurArrivee()-liste.get(i).getArrivee())) > (liste.get(i+1).getDuree()- (Tache.getCompteurArrivee()-liste.get(i+1).getArrivee()))) {
+				if (liste.get(i).tempsRestant() > liste.get(i+1).tempsRestant()) {
 					Tache temp = liste.get(i+1);
 					liste.set(i+1, liste.get(i));
 					liste.set(i, temp);
 					changement = true;
 				}
-				/* Quel critère suivant de tri ? */
+				/* Quel critï¿½re suivant de tri ? */
 				else if (liste.get(i).getArrivee() == liste.get(i+1).getArrivee()) {
 					if (liste.get(i).getNumero() > liste.get(i+1).getNumero()) {
 						Tache temp = liste.get(i+1);
@@ -215,6 +217,35 @@ public class Liste {
 					}
 				}
 			}
+		}
+	}
+	
+	public void miseAJour(){
+		int i = 0;
+		int indiceTacheEnTraitement = 0;
+		for (Tache t : liste) {
+			if (t.getEtat() == Tache.TRAITEMENT) {
+				indiceTacheEnTraitement = i;
+				System.out.println("indice traitement : "+indiceTacheEnTraitement);
+			}
+			if (t.tempsRestant() > 0) {
+				t.setEtat(Tache.ATTENTE);
+			}else {
+				t.setEtat(Tache.TRAITE);
+			}
+			i++;
+		}
+		i = 0;
+		boolean fini = true;
+		while (i+1 < liste.size() && liste.get(i).getEtat() != Tache.TRAITE && liste.get(i).getEtat() != Tache.TRAITEMENT) {
+			if (liste.get(i).tempsRestant() > 0) {
+				fini = false;
+			}
+			i++;
+		}
+		if (!fini) {
+			liste.get(i).setEtat(Tache.TRAITEMENT);
+			liste.get(indiceTacheEnTraitement).setEtat(Tache.TRAITE);
 		}
 	}
 	

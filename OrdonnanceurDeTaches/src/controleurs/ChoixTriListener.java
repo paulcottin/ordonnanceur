@@ -34,6 +34,7 @@ public class ChoixTriListener implements ActionListener{
 		else if (ord.getBarreOutils().getTypeDeTri().getSelectedItem().equals("SRT (Shortest Remaining Time)")) {
 			ord.srt();
 		}
+		ord.getListe().miseAJour();
 	}
 
 }
