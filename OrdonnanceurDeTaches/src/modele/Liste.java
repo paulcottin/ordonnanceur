@@ -13,9 +13,11 @@ public class Liste {
 	ArrayList<Tache> liste;
 	ArrayList<Integer> fin;
 	ArrayList<Integer> restant;
+	int nbTachesFinies;
 
 	public Liste(){
 		liste = new ArrayList<Tache>();
+		nbTachesFinies = 0;
 	}
 
 	//	Lit un fichier.
@@ -221,12 +223,30 @@ public class Liste {
 	}
 	
 	public void miseAJour(){
-		int i = 0;
+		
+		while (liste.get(nbTachesFinies).tempsRestant() < 0) {
+			System.out.println(nbTachesFinies);
+			if (liste.get(nbTachesFinies).tempsRestant() > 0) {
+				liste.get(nbTachesFinies).setEtat(Tache.TRAITEMENT);
+				for (int i = nbTachesFinies+1; i < liste.size(); i++) {
+					liste.get(i).setEtat(Tache.ATTENTE);
+				}
+			}else {
+				liste.get(nbTachesFinies).setEtat(Tache.TRAITE);
+				nbTachesFinies++;
+			}
+		}	
+	}
+	
+	
+	/* Commenté pour l'instant car il faut adapter cette fonction pour chaque tri fonctionne seulement pas trop mal
+	 * avec le sjf
+	public void miseAJour(){
+		/*int i = 0;
 		int indiceTacheEnTraitement = 0;
 		for (Tache t : liste) {
 			if (t.getEtat() == Tache.TRAITEMENT) {
 				indiceTacheEnTraitement = i;
-				System.out.println("indice traitement : "+indiceTacheEnTraitement);
 			}
 			if (t.tempsRestant() > 0) {
 				t.setEtat(Tache.ATTENTE);
@@ -237,17 +257,18 @@ public class Liste {
 		}
 		i = 0;
 		boolean fini = true;
-		while (i+1 < liste.size() && liste.get(i).getEtat() != Tache.TRAITE && liste.get(i).getEtat() != Tache.TRAITEMENT) {
+		while (i+1 < liste.size() && liste.get(i).getEtat() == Tache.TRAITE && liste.get(i).getEtat() == Tache.TRAITEMENT) {
 			if (liste.get(i).tempsRestant() > 0) {
 				fini = false;
 			}
 			i++;
 		}
+		System.out.println("i : "+i+"; indice traitement : "+indiceTacheEnTraitement+"; fini : "+fini);
 		if (!fini) {
 			liste.get(i).setEtat(Tache.TRAITEMENT);
 			liste.get(indiceTacheEnTraitement).setEtat(Tache.TRAITE);
 		}
-	}
+	}*/
 	
 
 	public ArrayList<Tache> getListe() {

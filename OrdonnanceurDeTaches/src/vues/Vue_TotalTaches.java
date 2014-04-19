@@ -47,18 +47,20 @@ public class Vue_TotalTaches extends JPanel implements Observer, Scrollable{
 	public void setTitres(){
 		
 		JPanel titres = new JPanel();
-		titres.setLayout(new GridLayout(1, 5));
+		titres.setLayout(new GridLayout(1, 6));
 		JLabel numeroLabel = new JLabel("Num\u00E9ro"), 
 				intituleLabel = new JLabel("Intitul\u00E9"), 
 				arriveLabel = new JLabel("Arriv\u00E9e"), 
 				dureeLabel = new JLabel("Dur\u00E9e"), 
-				prioriteLabel = new JLabel("Priorit\u00E9");
+				prioriteLabel = new JLabel("Priorit\u00E9"), 
+				etatlabel = new JLabel("Etat");
 		
 		titres.add(numeroLabel);
 		titres.add(intituleLabel);
 		titres.add(arriveLabel);
 		titres.add(dureeLabel);
 		titres.add(prioriteLabel);
+		titres.add(etatlabel);
 		titres.setBackground(backgroundColor);
 		
 		this.add(titres);
