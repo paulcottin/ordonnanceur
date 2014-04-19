@@ -223,16 +223,19 @@ public class Liste {
 	}
 	
 	public void miseAJour(){
-		boolean traitement = true;
+		boolean traitement = true, premier = true;
 		
 		for (Tache t : liste) {
-			if (t.getEtat() == Tache.TRAITEMENT && t.tempsRestant() > 0 && traitement) {
+			if (premier && t.tempsRestant() > 0) {
+				t.setEtat(Tache.TRAITEMENT);
+				traitement = true;
+			}
+			if (t.getEtat() == Tache.TRAITEMENT && t.tempsRestant() > 0) {
 				t.setAvancement(t.getAvancement()+1);//augmenter l'avancement de la tâche
 				traitement = true;
 			}
-			if (t.getEtat() == Tache.TRAITEMENT && t.tempsRestant() > 0 && !traitement) {
+			if (t.getEtat() == Tache.TRAITEMENT && t.tempsRestant() > 0 && traitement && !premier) {
 				t.setEtat(Tache.ATTENTE);
-				traitement = false;
 			}
 			if (t.getEtat() == Tache.TRAITEMENT && t.tempsRestant() <= 0) {
 				t.setEtat(Tache.TRAITE);
@@ -247,6 +250,9 @@ public class Liste {
 			}
 			if (t.getEtat() == Tache.ATTENTE && traitement) {
 				/*Ne rien faire*/
+			}
+			if (premier) {
+				premier = false;
 			}
 		}
 	}

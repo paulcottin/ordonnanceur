@@ -18,9 +18,11 @@ public class TimerListener implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if (e.getSource().equals(ord.getBarreOutils().getTimerPlus())) {
+			this.ord.getBarreOutils().getTypeDeTri().setEnabled(false);	//A partir du moment où on touche au temps on ne touche plus aux tris
 			this.ord.incrementeTemps();
 		}
 		else{
+			this.ord.getBarreOutils().getTypeDeTri().setEnabled(false);
 			this.ord.decrementeTemps();
 		}
 		ord.getListe().miseAJour();

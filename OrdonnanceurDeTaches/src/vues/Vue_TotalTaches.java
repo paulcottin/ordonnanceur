@@ -69,12 +69,13 @@ public class Vue_TotalTaches extends JPanel implements Observer, Scrollable{
 	public void rempliTache(){
 		boolean premier = true;
 		for (Tache t : ord.getListe().getListe()) {
-			if (premier && t.tempsRestant() > 0) {
+			/*if (premier && t.tempsRestant() > 0) {
 				t.setEtat(Tache.TRAITEMENT);
 				premier = false;
-			}
+			}*/
 			this.taches.add(new Vue_Tache(ord, t.getNumero(), t.getIntitule(), t.getArrivee(), t.getDuree(), t.getPriorite(), t.getEtat()));
 		}
+		
 	}
 	
 	public void afficheTache(){

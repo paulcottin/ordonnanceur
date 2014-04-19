@@ -9,6 +9,8 @@ public class Ordonnanceur extends Observable{
 	Liste liste;
 	Vue_TotalTaches vues;
 	Vue_BarreOutils barreOutils;
+	Fenetre fen;
+	Statistiques stats;
 	
 	@SuppressWarnings("unused")
 	public Ordonnanceur() {
@@ -16,7 +18,34 @@ public class Ordonnanceur extends Observable{
 		liste.lire();
 		vues = new Vue_TotalTaches(this);
 		barreOutils = new Vue_BarreOutils(this);
-		Fenetre fen = new Fenetre(this, vues, barreOutils);
+		stats = new Statistiques();
+		fen = new Fenetre(this, vues, barreOutils);
+	}
+	
+	public void initialisation(){
+		Tache.setCompteurArrivee(0);
+		Tache.temps = 0;
+		barreOutils.getTypeDeTri().setEnabled(true);
+		barreOutils.getTypeDeTri().setSelectedIndex(0);
+		
+		for (Tache t : liste.getListe()) {
+			t.setEtat(Tache.ATTENTE);
+		}
+		liste.getListe().get(0).setEtat(Tache.TRAITEMENT);
+		
+		stats.setNbChangementContexte(0);
+		stats.setTempsMoyenAttente(0);
+		stats.setTempsMoyenSejour(0);
+		
+		setChanged();
+		notifyObservers();
+	}
+	
+	public void calculStatistiques(){
+		this.stats.calcul();
+		
+		setChanged();
+		notifyObservers();
 	}
 	
 	public void nouvelleTache(String intitule, int duree, int priorite) {
@@ -88,8 +117,16 @@ public class Ordonnanceur extends Observable{
 	public void decrementeTemps(){
 		if (Tache.temps > 0) {
 			Tache.temps = Tache.temps -1;
+			setChanged(); notifyObservers(barreOutils);
 		}
-		setChanged(); notifyObservers();
+	}
+
+	public Statistiques getStats() {
+		return stats;
+	}
+
+	public void setStats(Statistiques stats) {
+		this.stats = stats;
 	}
 
 }

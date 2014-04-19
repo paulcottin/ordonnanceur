@@ -35,6 +35,7 @@ public class ChoixTriListener implements ActionListener{
 			ord.srt();
 		}
 		ord.getListe().miseAJour();
+		ord.calculStatistiques();
 	}
 
 }

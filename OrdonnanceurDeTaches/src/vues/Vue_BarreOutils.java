@@ -15,6 +15,7 @@ import javax.swing.JToolBar;
 import modele.Ordonnanceur;
 import modele.Tache;
 import controleurs.ChoixTriListener;
+import controleurs.InitialisationListener;
 import controleurs.NouvelleTacheListener;
 import controleurs.RechercheListener;
 import controleurs.TimerListener;
@@ -27,7 +28,7 @@ public class Vue_BarreOutils extends JToolBar implements Observer{
 	private static final long serialVersionUID = 1L;
 	
 	private JButton nouvelleTache = new JButton("Nouvelle t\u00e2che");
-	private JButton timerPlus, timerMoins;
+	private JButton timerPlus, timerMoins, initialisation;
 	private JLabel timerLabel;
 	
 	String[] choixTriItems = {"FIFO (First In First Out)", "SFJ (Shortest Job First)", "RR(q) (Round Robin(q))", "PR (Priority)", "PFIFO (Preemptive First In First Out)", "SRT (Shortest Remaining Time)"};
@@ -41,6 +42,8 @@ public class Vue_BarreOutils extends JToolBar implements Observer{
 		this.ord = ord;
 		ord.addObserver(this);
 		
+		initialisation = new JButton("init");
+		
 		timerPlus = new JButton("+");
 		timerLabel= new JLabel(String.valueOf(Tache.getTemps()));
 		timerMoins = new JButton("-");
@@ -49,6 +52,7 @@ public class Vue_BarreOutils extends JToolBar implements Observer{
 		typeDeTri.addActionListener(new ChoixTriListener(this.ord));
 		timerPlus.addActionListener(new TimerListener(this.ord));
 		timerMoins.addActionListener(new TimerListener(this.ord));
+		initialisation.addActionListener(new InitialisationListener(this.ord));
 		recherche.addActionListener(new RechercheListener());
 		recherche.addMouseListener(new rechercheMouseListener());
 		
@@ -64,6 +68,7 @@ public class Vue_BarreOutils extends JToolBar implements Observer{
 		this.addSeparator();
 		this.add(timerPlus);
 		this.addSeparator();
+		this.add(initialisation);
 		this.add(recherche);
 		
 		
@@ -131,6 +136,14 @@ public class Vue_BarreOutils extends JToolBar implements Observer{
 
 	public void setTimerMoins(JButton timerMoins) {
 		this.timerMoins = timerMoins;
+	}
+
+	public String[] getChoixTriItems() {
+		return choixTriItems;
+	}
+
+	public void setChoixTriItems(String[] choixTriItems) {
+		this.choixTriItems = choixTriItems;
 	}
 
 }
