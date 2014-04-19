@@ -198,7 +198,7 @@ public class Liste {
 		}
 	}*/
 
-	public void srt(){
+	public void srt(){/* Boucle infinie !!!
 		boolean changement = true;
 		while (changement) {
 			changement = false;
@@ -209,7 +209,7 @@ public class Liste {
 					liste.set(i, temp);
 					changement = true;
 				}
-				/* Quel crit�re suivant de tri ? */
+				
 				else if (liste.get(i).getArrivee() == liste.get(i+1).getArrivee()) {
 					if (liste.get(i).getNumero() > liste.get(i+1).getNumero()) {
 						Tache temp = liste.get(i+1);
@@ -219,58 +219,38 @@ public class Liste {
 					}
 				}
 			}
-		}
+		}*/
 	}
 	
 	public void miseAJour(){
+		boolean traitement = true;
 		
-		while (liste.get(nbTachesFinies).tempsRestant() < 0) {
-			System.out.println(nbTachesFinies);
-			if (liste.get(nbTachesFinies).tempsRestant() > 0) {
-				liste.get(nbTachesFinies).setEtat(Tache.TRAITEMENT);
-				for (int i = nbTachesFinies+1; i < liste.size(); i++) {
-					liste.get(i).setEtat(Tache.ATTENTE);
-				}
-			}else {
-				liste.get(nbTachesFinies).setEtat(Tache.TRAITE);
-				nbTachesFinies++;
+		for (Tache t : liste) {
+			if (t.getEtat() == Tache.TRAITEMENT && t.tempsRestant() > 0 && traitement) {
+				t.setAvancement(t.getAvancement()+1);//augmenter l'avancement de la tâche
+				traitement = true;
 			}
-		}	
+			if (t.getEtat() == Tache.TRAITEMENT && t.tempsRestant() > 0 && !traitement) {
+				t.setEtat(Tache.ATTENTE);
+				traitement = false;
+			}
+			if (t.getEtat() == Tache.TRAITEMENT && t.tempsRestant() <= 0) {
+				t.setEtat(Tache.TRAITE);
+				traitement = false;
+			}
+			if (t.getEtat() == Tache.TRAITE) {
+				/*Ne rien faire*/
+			}
+			if (t.getEtat() == Tache.ATTENTE && !traitement) {
+				t.setEtat(Tache.TRAITEMENT);
+				traitement = true;
+			}
+			if (t.getEtat() == Tache.ATTENTE && traitement) {
+				/*Ne rien faire*/
+			}
+		}
 	}
 	
-	
-	/* Commenté pour l'instant car il faut adapter cette fonction pour chaque tri fonctionne seulement pas trop mal
-	 * avec le sjf
-	public void miseAJour(){
-		/*int i = 0;
-		int indiceTacheEnTraitement = 0;
-		for (Tache t : liste) {
-			if (t.getEtat() == Tache.TRAITEMENT) {
-				indiceTacheEnTraitement = i;
-			}
-			if (t.tempsRestant() > 0) {
-				t.setEtat(Tache.ATTENTE);
-			}else {
-				t.setEtat(Tache.TRAITE);
-			}
-			i++;
-		}
-		i = 0;
-		boolean fini = true;
-		while (i+1 < liste.size() && liste.get(i).getEtat() == Tache.TRAITE && liste.get(i).getEtat() == Tache.TRAITEMENT) {
-			if (liste.get(i).tempsRestant() > 0) {
-				fini = false;
-			}
-			i++;
-		}
-		System.out.println("i : "+i+"; indice traitement : "+indiceTacheEnTraitement+"; fini : "+fini);
-		if (!fini) {
-			liste.get(i).setEtat(Tache.TRAITEMENT);
-			liste.get(indiceTacheEnTraitement).setEtat(Tache.TRAITE);
-		}
-	}*/
-	
-
 	public ArrayList<Tache> getListe() {
 		return liste;
 	}

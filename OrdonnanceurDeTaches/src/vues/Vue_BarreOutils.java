@@ -42,7 +42,7 @@ public class Vue_BarreOutils extends JToolBar implements Observer{
 		ord.addObserver(this);
 		
 		timerPlus = new JButton("+");
-		timerLabel= new JLabel(String.valueOf(Tache.getCompteurArrivee()));
+		timerLabel= new JLabel(String.valueOf(Tache.getTemps()));
 		timerMoins = new JButton("-");
 		
 		nouvelleTache.addActionListener(new NouvelleTacheListener(this.ord));
@@ -72,7 +72,7 @@ public class Vue_BarreOutils extends JToolBar implements Observer{
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		// TODO Auto-generated method stub
-		timerLabel.setText(String.valueOf(Tache.getCompteurArrivee()));
+		timerLabel.setText(String.valueOf(Tache.getTemps()));
 	}
 	
 	class rechercheMouseListener implements MouseListener{

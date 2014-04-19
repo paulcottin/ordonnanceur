@@ -9,7 +9,9 @@ public class Tache {
 	private int priorite;
 	private int arrivee;
 	private int etat;
+	private int avancement;
 	public static int compteur_arrivee = 0;
+	public static int temps = 0;
 	
 	public Tache(String intitule, int duree, int priorite){
 		this.numero = compteur_numero;
@@ -18,6 +20,7 @@ public class Tache {
 		this.arrivee = compteur_arrivee;
 		this.priorite = priorite;
 		this.etat = ATTENTE; // Par défault une tâche crée est en attente.
+		this.avancement = 0; //Au départ, la tâche n'a pas commencée à être exectutée
 		compteur_numero++;
 	}
 	
@@ -28,13 +31,19 @@ public class Tache {
 		this.arrivee = arrivee;
 		this.priorite = priorite;
 		this.etat = ATTENTE; // Par défault une tâche crée est en attente.
+		this.avancement = 0;
 		compteur_numero++;
 	}
 	
 	public int tempsRestant(){
-		return duree - (compteur_arrivee - arrivee);
+		
+		return duree - avancement;
 	}
 
+	public static int getTemps(){
+		return temps;
+	}
+	
 	public int getCompteurNumero() {
 		return compteur_numero;
 	}
@@ -97,6 +106,14 @@ public class Tache {
 
 	public void setEtat(int etat) {
 		this.etat = etat;
+	}
+	
+	public int getAvancement() {
+		return avancement;
+	}
+
+	public void setAvancement(int avancement) {
+		this.avancement = avancement;
 	}
 	
 }

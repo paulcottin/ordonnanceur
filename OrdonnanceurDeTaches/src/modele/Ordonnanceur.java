@@ -81,12 +81,14 @@ public class Ordonnanceur extends Observable{
 	}
 
 	public void incrementeTemps() {
-		Tache.setCompteurArrivee(Tache.getCompteurArrivee()+1);
+		Tache.temps = Tache.temps +1;
 		setChanged(); notifyObservers(barreOutils);
 	}
 	
 	public void decrementeTemps(){
-		Tache.setCompteurArrivee(Tache.getCompteurArrivee()-1);
+		if (Tache.temps > 0) {
+			Tache.temps = Tache.temps -1;
+		}
 		setChanged(); notifyObservers();
 	}
 
