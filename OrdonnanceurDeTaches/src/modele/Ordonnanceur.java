@@ -52,7 +52,6 @@ public class Ordonnanceur extends Observable{
 		Tache t = new Tache(intitule, duree, priorite);
 		liste.getListe().add(t);
 		vues.ajouteTache(t);
-		
 		setChanged();
 		notifyObservers();
 	}
