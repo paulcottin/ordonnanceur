@@ -16,9 +16,14 @@ public class Statistiques {
 	 * A MODIFIER
 	 */
 	public void calcul() {
-		this.tempsMoyenSejour++;
-		this.tempsMoyenAttente++;
-		this.nbChangementContexte++;
+		// voir http://fr.wikipedia.org/wiki/Th%C3%A9orie_des_files_d'attente
+		int mu = 1;				//temps moyen de service
+		int lambda = 1;			//fréquence moyenne d'arrivee 
+		int A = lambda / mu;	//traffic offert
+
+		this.tempsMoyenSejour = 1/mu * 1/(1-A);
+		this.tempsMoyenAttente = 1/(mu * (1-A));
+		this.nbChangementContexte++;//A modifier
 	}
 
 	public int getTempsMoyenSejour() {
