@@ -49,11 +49,11 @@ public class Vue_Tache extends JPanel implements Observer{
 			this.setBackground(couleurTacheAttente);
 			break;
 		case 1:
-			etatLabel = new JLabel("traitement...");
+			etatLabel = new JLabel("Traitement...");
 			this.setBackground(couleurTacheTraitement);
 			break;
 		case 2:
-			etatLabel = new JLabel("traité");
+			etatLabel = new JLabel("Trait\u00E9e");
 			this.setBackground(couleurTacheTraitee);
 			break;
 		default:

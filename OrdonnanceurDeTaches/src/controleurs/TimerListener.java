@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import modele.Ordonnanceur;
-import modele.Tache;
 
 public class TimerListener implements ActionListener{
 

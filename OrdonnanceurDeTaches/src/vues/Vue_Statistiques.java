@@ -26,9 +26,9 @@ public class Vue_Statistiques extends JPanel implements Observer{
 		this.ord = ord;
 		this.ord.addObserver(this);
 		
-		tempsMoyenSejour = new JLabel("tps moyen séjour : "+this.ord.getStats().getTempsMoyenSejour());
-		tempsMoyenAttente = new JLabel("tps moyen attente : "+this.ord.getStats().getTempsMoyenAttente());
-		nbChangementContexte = new JLabel("nb de changement de contexte : "+this.ord.getStats().getNbChangementContexte());
+		tempsMoyenSejour = new JLabel("Temps moyen s\u00E9jour : "+this.ord.getStats().getTempsMoyenSejour());
+		tempsMoyenAttente = new JLabel("Temps moyen attente : "+this.ord.getStats().getTempsMoyenAttente());
+		nbChangementContexte = new JLabel("Nombre de changements de contexte : "+this.ord.getStats().getNbChangementContexte());
 		JLabel espace1 = new JLabel(";  ");
 		JLabel espace2 = new JLabel(";  ");
 		
