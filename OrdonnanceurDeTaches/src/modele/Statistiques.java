@@ -5,6 +5,7 @@ public class Statistiques {
 	private int tempsMoyenSejour;
 	private int tempsMoyenAttente;
 	private int nbChangementContexte;
+	private int aSupprimerApres;
 	
 	public Statistiques(){
 		this.tempsMoyenSejour = 0;
