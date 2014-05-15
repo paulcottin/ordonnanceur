@@ -29,8 +29,8 @@ public class Vue_Statistiques extends JPanel implements Observer{
 		tempsMoyenSejour = new JLabel("Temps moyen s\u00E9jour : "+this.ord.getStats().getTempsMoyenSejour());
 		tempsMoyenAttente = new JLabel("Temps moyen attente : "+this.ord.getStats().getTempsMoyenAttente());
 		nbChangementContexte = new JLabel("Nombre de changements de contexte : "+this.ord.getStats().getNbChangementContexte());
-		JLabel espace1 = new JLabel(";  ");
-		JLabel espace2 = new JLabel(";  ");
+		JLabel espace1 = new JLabel(" ;  ");
+		JLabel espace2 = new JLabel(" ;  ");
 		
 		this.add(tempsMoyenAttente);
 		this.add(espace1);
@@ -44,9 +44,9 @@ public class Vue_Statistiques extends JPanel implements Observer{
 	@Override
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
-		tempsMoyenSejour.setText("tps moyen séjour : "+this.ord.getStats().getTempsMoyenSejour());
-		tempsMoyenAttente.setText("tps moyen attente : "+this.ord.getStats().getTempsMoyenAttente());
-		nbChangementContexte.setText("nb de changement de contexte : "+this.ord.getStats().getNbChangementContexte());
+		tempsMoyenSejour.setText("Temps moyen s\u00E9jour : "+this.ord.getStats().getTempsMoyenSejour());
+		tempsMoyenAttente.setText("Temps moyen attente : "+this.ord.getStats().getTempsMoyenAttente());
+		nbChangementContexte.setText("Nombre de changement de contexte : "+this.ord.getStats().getNbChangementContexte());
 		
 		this.revalidate();
 	}
