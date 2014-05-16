@@ -50,8 +50,8 @@ public class Tache {
 	}
 	
 	/**
-	 * Calcul du temps restant pour une tâche
-	 * @return duree - avancement de la tâche
+	 * Calcul du temps restant pour une Tache
+	 * @return duree - avancement de la tache
 	 */
 	public int tempsRestant(){
 		return duree - avancement;
