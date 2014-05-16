@@ -20,7 +20,9 @@ public class Liste {
 		nbTachesFinies = 0;
 	}
 
-	//	Lit un fichier.
+	/**
+	 * Lit le fichier data/donnees.txt et initialise l'arrayList avec ces données
+	 */
 	public void lire(){
 		try{
 			BufferedReader buff = new BufferedReader(new FileReader(new File("data/donnees.txt")));
@@ -43,6 +45,9 @@ public class Liste {
 		}
 	}
 
+	/**
+	 * Ecriture dans le fichier data/donnees.txt
+	 */
 	public void ecrire(){
 		try{
 			BufferedWriter buff = new BufferedWriter(new FileWriter(new File("data/donnees.txt")));
@@ -171,7 +176,7 @@ public class Liste {
 	/**
 	 * On trie la liste par la m�thode sjf (les taches les plus courtes sont trait�es en priorit�)
 	 */
-	/*public void srt(){
+	public void srt(){
 		boolean changement = true;
 		fin = new ArrayList<Integer>();
 		restant = new ArrayList<Integer>();
@@ -196,9 +201,9 @@ public class Liste {
 				}
 			}
 		}
-	}*/
+	}
 
-	public void srt(){/* Boucle infinie !!!
+	/*public void srt(){/* Boucle infinie !!!
 		boolean changement = true;
 		while (changement) {
 			changement = false;
@@ -220,8 +225,10 @@ public class Liste {
 				}
 			}
 		}*/
-	}
 	
+	/**
+	 * Fonction de mise à jour des tâches en fonction de l'avancement du temps et de la politique d'ordonnancement
+	 */
 	public void miseAJour(){
 		boolean traitement = true;
 		int nbTachesFinies = 0;

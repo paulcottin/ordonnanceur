@@ -26,6 +26,12 @@ public class Fenetre extends JFrame{
 	private Vue_Statistiques statistiques;
 	private Ordonnanceur ord;
 	
+	/**
+	 * Nouvelle fenetre d'ordonnanceur de Tâche
+	 * @param ordonnanceur : Ordonnanceur
+	 * @param vues : Vue de toutes les tâches
+	 * @param barreOutils : Vue de la barre d'outils
+	 */
 	public Fenetre(Ordonnanceur ordonnanceur, Vue_TotalTaches vues, Vue_BarreOutils barreOutils) {
 		super("Projet SD - Ordonnanceur de t\u00e2ches");
 		this.ord = ordonnanceur;
@@ -84,6 +90,10 @@ public class Fenetre extends JFrame{
 		this.barreOutils = barreOutils;
 	}
 	
+	/**
+	 * @author paul
+	 *Classe qui gère l'action à la fermeture de la fenêtre => Enregistrer les données dans le fichier data/donnees.txt
+	 */
 	class FermetureListener implements WindowListener{
 
 		@Override

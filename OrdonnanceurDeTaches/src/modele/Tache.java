@@ -13,6 +13,12 @@ public class Tache {
 	public static int compteur_arrivee = 0;
 	public static int temps = 0;
 	
+	/**
+	 * Contructeur de tâche
+	 * @param intitule : intitulé de la tâche (string)
+	 * @param duree : durée de la tâche (int)
+	 * @param priorite : priorité de la tâche (BASSE, MOYENNE, HAUTE) (int)
+	 */
 	public Tache(String intitule, int duree, int priorite){
 		this.numero = compteur_numero;
 		this.intitule = intitule;
@@ -24,6 +30,14 @@ public class Tache {
 		compteur_numero++;
 	}
 	
+	/**
+	 * Constructeur de tâche
+	 * @param numero : numéro de la tâche (int)
+	 * @param intitule : intitulé de la tâche (string)
+	 * @param arrivee : numéro d'arrivée de la tâche (int)
+	 * @param duree : durée de la tâche (int)
+	 * @param priorite : priorité de la tâche (BASSE, MOYENNE, HAUTE) (int)
+	 */
 	public Tache(int numero, String intitule, int arrivee, int duree, int priorite){
 		this.numero = numero;
 		this.intitule = intitule;
@@ -35,8 +49,11 @@ public class Tache {
 		compteur_numero++;
 	}
 	
+	/**
+	 * Calcul du temps restant pour une tâche
+	 * @return duree - avancement de la tâche
+	 */
 	public int tempsRestant(){
-		
 		return duree - avancement;
 	}
 
