@@ -36,6 +36,10 @@ public class ChoixTriListener implements ActionListener{
 		}
 		ord.getListe().miseAJour();
 		ord.calculStatistiques();
+		ord.getBarreOutils().getTypeDeTri().setEnabled(false);
+		ord.getBarreOutils().getTimerMoins().setEnabled(true);
+		ord.getBarreOutils().getTimerPlus().setEnabled(true);
+		ord.getBarreOutils().getNouvelleTache().setEnabled(false);
 	}
 
 }

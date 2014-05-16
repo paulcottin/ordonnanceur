@@ -1,6 +1,8 @@
 package modele;
 
 import java.awt.BorderLayout;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -36,12 +38,14 @@ public class Fenetre extends JFrame{
 		container.setLayout(new BorderLayout());
 		
 		menu.setLayout(new BorderLayout());
-		menu.add(new Vue_Menu(ord), BorderLayout.NORTH);
+		//menu.add(new Vue_Menu(ord), BorderLayout.NORTH);
 		menu.add(this.barreOutils, BorderLayout.CENTER);
 		
 		container.add(menu, BorderLayout.NORTH);
 		container.add(vueTotalTaches, BorderLayout.CENTER);
 		container.add(statistiques, BorderLayout.SOUTH);
+		
+		this.addWindowListener(new FermetureListener());
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setContentPane(container);
@@ -78,5 +82,50 @@ public class Fenetre extends JFrame{
 
 	public void setBarreOutils(Vue_BarreOutils barreOutils) {
 		this.barreOutils = barreOutils;
+	}
+	
+	class FermetureListener implements WindowListener{
+
+		@Override
+		public void windowActivated(WindowEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void windowClosed(WindowEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void windowClosing(WindowEvent e) {
+			ord.getListe().ecrire();
+		}
+
+		@Override
+		public void windowDeactivated(WindowEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void windowDeiconified(WindowEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void windowIconified(WindowEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void windowOpened(WindowEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+		
 	}
 }

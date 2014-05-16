@@ -45,7 +45,7 @@ public class Vue_NouvelleTache extends JFrame implements Observer{
 
 	private void initialisation() {
 		numeroLabel = new JLabel("Num\u00E9ro : " + Tache.compteur_numero);
-		arriveLabel = new JLabel("Arriv\u00E9e : " + Tache.compteur_arrivee);
+		arriveLabel = new JLabel("Arriv\u00E9e : " + Tache.temps);
 		intituleLabel = new JLabel("Intitul\u00E9 : ");
 		dureeLabel = new JLabel("Dur\u00E9e : ");
 		prioriteLabel = new JLabel("Priorit\u00E9 : ");
@@ -90,7 +90,7 @@ public class Vue_NouvelleTache extends JFrame implements Observer{
 	}
 
 	boolean saisieValide(){
-		if (intituleField.getText().equals("Intitulé") || dureeField.getText().equals("Durée")) {//Si rien n'a changé
+		if (intituleField.getText().equals("Intitulï¿½") || dureeField.getText().equals("Durï¿½e")) {//Si rien n'a changï¿½
 			return false;
 		}
 		else if (intituleField.getText().equals("") || dureeField.getText().equals("")) {//Si les textes sont vides

@@ -17,7 +17,6 @@ import modele.Tache;
 import controleurs.ChoixTriListener;
 import controleurs.InitialisationListener;
 import controleurs.NouvelleTacheListener;
-import controleurs.RechercheListener;
 import controleurs.TimerListener;
 
 public class Vue_BarreOutils extends JToolBar implements Observer{
@@ -31,10 +30,9 @@ public class Vue_BarreOutils extends JToolBar implements Observer{
 	private JButton timerPlus, timerMoins, initialisation;
 	private JLabel timerLabel;
 	
-	String[] choixTriItems = {"FIFO (First In First Out)", "SFJ (Shortest Job First)", "RR(q) (Round Robin(q))", "PR (Priority)", "PFIFO (Preemptive First In First Out)", "SRT (Shortest Remaining Time)"};
+	String[] choixTriItems = {"Choix du tri", "FIFO (First In First Out)", "SFJ (Shortest Job First)", "RR(q) (Round Robin(q))", "PR (Priority)", "PFIFO (Preemptive First In First Out)", "SRT (Shortest Remaining Time)"};
 	private JComboBox<String> typeDeTri = new JComboBox<String>(choixTriItems);
 	
-	private JTextField recherche = new JTextField("Recherche");
 	
 	private Ordonnanceur ord;
 	
@@ -42,34 +40,33 @@ public class Vue_BarreOutils extends JToolBar implements Observer{
 		this.ord = ord;
 		ord.addObserver(this);
 		
-		initialisation = new JButton("init");
+		initialisation = new JButton("Réinitialiser");
 		
-		timerPlus = new JButton("+");
+		timerPlus = new JButton("Avance");
 		timerLabel= new JLabel(String.valueOf(Tache.getTemps()));
 		timerMoins = new JButton("-");
+		timerMoins.setEnabled(false);
+		timerPlus.setEnabled(false);
 		
 		nouvelleTache.addActionListener(new NouvelleTacheListener(this.ord));
 		typeDeTri.addActionListener(new ChoixTriListener(this.ord));
 		timerPlus.addActionListener(new TimerListener(this.ord));
 		timerMoins.addActionListener(new TimerListener(this.ord));
 		initialisation.addActionListener(new InitialisationListener(this.ord));
-		recherche.addActionListener(new RechercheListener());
-		recherche.addMouseListener(new rechercheMouseListener());
 		
 		setFloatable(false);
 		
 		this.add(nouvelleTache);
 		this.addSeparator();
 		this.add(typeDeTri);
-		this.addSeparator();
-		this.add(timerMoins);
+		//this.addSeparator();
+		//this.add(timerMoins);
 		this.addSeparator();
 		this.add(timerLabel);
 		this.addSeparator();
 		this.add(timerPlus);
 		this.addSeparator();
 		this.add(initialisation);
-		this.add(recherche);
 		
 		
 	}
@@ -80,39 +77,6 @@ public class Vue_BarreOutils extends JToolBar implements Observer{
 		timerLabel.setText(String.valueOf(Tache.getTemps()));
 	}
 	
-	class rechercheMouseListener implements MouseListener{
-
-		@Override
-		public void mouseClicked(MouseEvent e) {
-			recherche.setText("");
-			
-		}
-
-		@Override
-		public void mouseEntered(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void mouseExited(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void mousePressed(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void mouseReleased(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-	}
 
 	public JComboBox<String> getTypeDeTri() {
 		return typeDeTri;
@@ -144,6 +108,14 @@ public class Vue_BarreOutils extends JToolBar implements Observer{
 
 	public void setChoixTriItems(String[] choixTriItems) {
 		this.choixTriItems = choixTriItems;
+	}
+
+	public JButton getNouvelleTache() {
+		return nouvelleTache;
+	}
+
+	public void setNouvelleTache(JButton nouvelleTache) {
+		this.nouvelleTache = nouvelleTache;
 	}
 
 }

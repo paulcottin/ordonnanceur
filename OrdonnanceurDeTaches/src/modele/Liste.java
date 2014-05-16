@@ -48,12 +48,12 @@ public class Liste {
 			BufferedWriter buff = new BufferedWriter(new FileWriter(new File("data/donnees.txt")));
 			String ligne;
 			for (Tache t : liste) {
-				ligne = String.valueOf(t.getNumero()) + "#" + t.getIntitule() + "#" + t.getArrivee() + "#" + t.getDuree() + "#" + t.getPriorite();
+				ligne = String.valueOf(t.getNumero()) + "#" + t.getIntitule() + "#" + t.getArrivee() + "#" + t.getDuree() + "#" + t.getPriorite()+"\n";
 				buff.write(ligne);
 			}
 			buff.close();
 		} catch (Exception e) {
-			System.out.println("Erreur --" + e.toString());
+			System.out.println("Erreur d'écriture dans le fichier" + e.toString());
 		}
 	}
 
@@ -223,37 +223,28 @@ public class Liste {
 	}
 	
 	public void miseAJour(){
-		boolean traitement = true, premier = true;
+		boolean traitement = true;
+		int nbTachesFinies = 0;
 		
 		for (Tache t : liste) {
-			if (premier && t.tempsRestant() > 0) {
+			//Le premier et qu'il n'a pas fini de la traitée on continue de la traiter
+			if (liste.indexOf(t) == nbTachesFinies && t.tempsRestant() > 0) {
 				t.setEtat(Tache.TRAITEMENT);
+				t.setAvancement(t.getAvancement()+1);	//Incrémente le temps restant de la tâche
 				traitement = true;
 			}
-			if (t.getEtat() == Tache.TRAITEMENT && t.tempsRestant() > 0) {
-				t.setAvancement(t.getAvancement()+1);//augmenter l'avancement de la tâche
-				traitement = true;
-			}
-			if (t.getEtat() == Tache.TRAITEMENT && t.tempsRestant() > 0 && traitement && !premier) {
-				t.setEtat(Tache.ATTENTE);
-			}
-			if (t.getEtat() == Tache.TRAITEMENT && t.tempsRestant() <= 0) {
+			//Si le premier est fini de traité => mettre traitement à false
+			else if (liste.indexOf(t) == nbTachesFinies && t.tempsRestant() == 0) {
 				t.setEtat(Tache.TRAITE);
 				traitement = false;
+				nbTachesFinies++;
 			}
-			if (t.getEtat() == Tache.TRAITE) {
-				/*Ne rien faire*/
-			}
-			if (t.getEtat() == Tache.ATTENTE && !traitement) {
+			//Si il n'y a aucune tâche en traitement la mettre
+			else if (!traitement) {
 				t.setEtat(Tache.TRAITEMENT);
 				traitement = true;
 			}
-			if (t.getEtat() == Tache.ATTENTE && traitement) {
-				/*Ne rien faire*/
-			}
-			if (premier) {
-				premier = false;
-			}
+			//System.out.println("Tâche n°"+liste.indexOf(t)+" temps restant : "+t.tempsRestant());
 		}
 	}
 	

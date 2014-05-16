@@ -12,14 +12,18 @@ public class Ordonnanceur extends Observable{
 	Fenetre fen;
 	Statistiques stats;
 	
-	@SuppressWarnings("unused")
+
 	public Ordonnanceur() {
 		liste = new Liste();
 		liste.lire();
+		liste.getListe().get(0).setAvancement(Tache.TRAITEMENT);
 		vues = new Vue_TotalTaches(this);
 		barreOutils = new Vue_BarreOutils(this);
 		stats = new Statistiques();
 		fen = new Fenetre(this, vues, barreOutils);
+		
+		setChanged();
+		notifyObservers();
 	}
 	
 	public void initialisation(){
@@ -30,8 +34,9 @@ public class Ordonnanceur extends Observable{
 		
 		for (Tache t : liste.getListe()) {
 			t.setEtat(Tache.ATTENTE);
+			t.setAvancement(0);
 		}
-		liste.getListe().get(0).setEtat(Tache.TRAITEMENT);
+		//liste.getListe().get(0).setEtat(Tache.TRAITEMENT);
 		
 		stats.setNbChangementContexte(0);
 		stats.setTempsMoyenAttente(0);
@@ -110,13 +115,13 @@ public class Ordonnanceur extends Observable{
 
 	public void incrementeTemps() {
 		Tache.temps = Tache.temps +1;
-		setChanged(); notifyObservers(barreOutils);
+		setChanged(); notifyObservers();
 	}
 	
 	public void decrementeTemps(){
 		if (Tache.temps > 0) {
 			Tache.temps = Tache.temps -1;
-			setChanged(); notifyObservers(barreOutils);
+			setChanged(); notifyObservers();
 		}
 	}
 

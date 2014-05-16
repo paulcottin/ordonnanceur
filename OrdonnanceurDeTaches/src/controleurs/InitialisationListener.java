@@ -18,5 +18,9 @@ public class InitialisationListener implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
 		ord.initialisation();
+		ord.getBarreOutils().getTypeDeTri().setEnabled(true);
+		ord.getBarreOutils().getTimerMoins().setEnabled(false);
+		ord.getBarreOutils().getTimerPlus().setEnabled(false);
+		ord.getBarreOutils().getNouvelleTache().setEnabled(true);
 	}
 }
