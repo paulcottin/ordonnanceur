@@ -178,21 +178,17 @@ public class Liste {
 	 */
 	public void srt(){
 		boolean changement = true;
-		fin = new ArrayList<Integer>();
-		restant = new ArrayList<Integer>();
 		while (changement) {
 			changement = false;
 			for (int i = 0; i < liste.size() -1; i++) {
-				fin.add(liste.get(i).getArrivee() + liste.get(i).getDuree());
-				restant.add(fin.get(i) - liste.get(i).getArrivee());
-				if (restant.get(i) > restant.get(i+1)) {
+				if (liste.get(i).getDuree() > liste.get(i+1).getDuree()) {
 					Tache temp = liste.get(i+1);
 					liste.set(i+1, liste.get(i));
 					liste.set(i, temp);
 					changement = true;
 				}
-				else if (restant.get(i) == restant.get(i+1)) {
-					if (liste.get(i).getNumero() > liste.get(i+1).getNumero()) {
+				else if (liste.get(i).getDuree() == liste.get(i+1).getDuree()) {
+					if (liste.get(i).getPriorite() < liste.get(i+1).getPriorite()) {
 						Tache temp = liste.get(i+1);
 						liste.set(i+1, liste.get(i));
 						liste.set(i, temp);
@@ -203,19 +199,19 @@ public class Liste {
 		}
 	}
 
-	/*public void srt(){/* Boucle infinie !!!
+	
+	void triParNumero(){
 		boolean changement = true;
 		while (changement) {
 			changement = false;
 			for (int i = 0; i < liste.size() -1; i++) {
-				if (liste.get(i).tempsRestant() > liste.get(i+1).tempsRestant()) {
+				if (liste.get(i).getNumero() > liste.get(i+1).getNumero()) {
 					Tache temp = liste.get(i+1);
 					liste.set(i+1, liste.get(i));
 					liste.set(i, temp);
 					changement = true;
 				}
-				
-				else if (liste.get(i).getArrivee() == liste.get(i+1).getArrivee()) {
+				else if (liste.get(i).getNumero() == liste.get(i+1).getNumero()) {
 					if (liste.get(i).getNumero() > liste.get(i+1).getNumero()) {
 						Tache temp = liste.get(i+1);
 						liste.set(i+1, liste.get(i));
@@ -224,7 +220,8 @@ public class Liste {
 					}
 				}
 			}
-		}*/
+		}
+	}
 	
 	/**
 	 * Fonction de mise à jour des tâches en fonction de l'avancement du temps et de la politique d'ordonnancement

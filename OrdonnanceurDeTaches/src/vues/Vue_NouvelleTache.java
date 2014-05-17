@@ -122,8 +122,8 @@ public class Vue_NouvelleTache extends JFrame implements Observer{
 		return intituleField;
 	}
 
-	public void setIntituleField(JTextField intituleField) {
-		this.intituleField = intituleField;
+	public void setIntituleField(String string) {
+		this.intituleField.setText(string);
 	}
 
 	public int getDuree() {
@@ -189,6 +189,38 @@ public class Vue_NouvelleTache extends JFrame implements Observer{
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
 
+	}
+
+	public JTextField getDureeField() {
+		return dureeField;
+	}
+
+	public void setDureeField(String string) {
+		this.dureeField.setText(string);
+	}
+
+	public JLabel getNumeroLabel() {
+		return numeroLabel;
+	}
+
+	public void setNumeroLabel(String string) {
+		this.numeroLabel.setText(string);
+	}
+
+	public JLabel getArriveLabel() {
+		return arriveLabel;
+	}
+
+	public void setArriveLabel(String string) {
+		this.arriveLabel.setText(string);
+	}
+
+	public JComboBox<String> getPrioriteComboBox() {
+		return prioriteComboBox;
+	}
+
+	public void setPrioriteComboBox(int index) {
+		this.prioriteComboBox.setSelectedIndex(index);
 	}
 
 }

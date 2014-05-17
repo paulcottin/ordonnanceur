@@ -34,12 +34,18 @@ public class ChoixTriListener implements ActionListener{
 		else if (ord.getBarreOutils().getTypeDeTri().getSelectedItem().equals("SRT (Shortest Remaining Time)")) {
 			ord.srt();
 		}
-		ord.getListe().miseAJour();
-		ord.calculStatistiques();
-		ord.getBarreOutils().getTypeDeTri().setEnabled(false);
-		ord.getBarreOutils().getTimerMoins().setEnabled(true);
-		ord.getBarreOutils().getTimerPlus().setEnabled(true);
-		ord.getBarreOutils().getNouvelleTache().setEnabled(false);
+		else if (ord.getBarreOutils().getTypeDeTri().getSelectedItem().equals("Par numéro")) {
+			ord.triParNumero();
+		}
+		
+		if (!ord.getBarreOutils().getTypeDeTri().getSelectedItem().equals("Choix du tri")) {
+			ord.getListe().miseAJour();
+			ord.calculStatistiques();
+			ord.getBarreOutils().getTypeDeTri().setEnabled(false);
+			ord.getBarreOutils().getTimerMoins().setEnabled(true);
+			ord.getBarreOutils().getTimerPlus().setEnabled(true);
+			ord.getBarreOutils().getDiagramme().setEnabled(true);
+		}
 	}
 
 }

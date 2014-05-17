@@ -38,7 +38,9 @@ public class Fenetre extends JFrame{
 		this.vueTotalTaches = vues;
 		this.barreOutils = barreOutils;
 		this.statistiques = new Vue_Statistiques(ord);
-		this.setSize(600, 600);
+		this.pack();
+		this.setDefaultLookAndFeelDecorated(true);
+		this.setExtendedState(this.MAXIMIZED_BOTH);
 		this.setLocationRelativeTo(null);
 		
 		container.setLayout(new BorderLayout());
@@ -110,6 +112,7 @@ public class Fenetre extends JFrame{
 
 		@Override
 		public void windowClosing(WindowEvent e) {
+			ord.liste.triParNumero();
 			ord.getListe().ecrire();
 		}
 

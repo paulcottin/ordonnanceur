@@ -53,7 +53,9 @@ public class Vue_TotalTaches extends JPanel implements Observer, Scrollable{
 				arriveLabel = new JLabel("Arriv\u00E9e"), 
 				dureeLabel = new JLabel("Dur\u00E9e"), 
 				prioriteLabel = new JLabel("Priorit\u00E9"), 
-				etatlabel = new JLabel("Etat");
+				etatlabel = new JLabel("Etat"),
+				modifierLabel = new JLabel("Modifier"),
+				supprimerLabel = new JLabel("Supprimer");
 		
 		titres.add(numeroLabel);
 		titres.add(intituleLabel);
@@ -61,6 +63,8 @@ public class Vue_TotalTaches extends JPanel implements Observer, Scrollable{
 		titres.add(dureeLabel);
 		titres.add(prioriteLabel);
 		titres.add(etatlabel);
+		titres.add(modifierLabel);
+		titres.add(supprimerLabel);
 		titres.setBackground(backgroundColor);
 		
 		this.add(titres);
@@ -68,12 +72,14 @@ public class Vue_TotalTaches extends JPanel implements Observer, Scrollable{
 	
 	public void rempliTache(){
 		boolean premier = true;
+		int i = 0;
 		for (Tache t : ord.getListe().getListe()) {
 			/*if (premier && t.tempsRestant() > 0) {
 				t.setEtat(Tache.TRAITEMENT);
 				premier = false;
 			}*/
-			this.taches.add(new Vue_Tache(ord, t.getNumero(), t.getIntitule(), t.getArrivee(), t.getDuree(), t.getPriorite(), t.getEtat()));
+			this.taches.add(new Vue_Tache(ord, t.getNumero(), t.getIntitule(), t.getArrivee(), t.getDuree(), t.getPriorite(), t.getEtat(), i));
+			i++;
 		}
 		
 	}
@@ -88,7 +94,8 @@ public class Vue_TotalTaches extends JPanel implements Observer, Scrollable{
 	}
 	
 	public void ajouteTache(Tache t){
-		taches.add(new Vue_Tache(ord, t.getNumero(), t.getIntitule(), t.getArrivee(), t.getDuree(), t.getPriorite(), t.getEtat()));
+		int i = taches.size();
+		taches.add(new Vue_Tache(ord, t.getNumero(), t.getIntitule(), t.getArrivee(), t.getDuree(), t.getPriorite(), t.getEtat(), i));
 	}
 	
 	public ArrayList<Vue_Tache> getTaches() {
@@ -99,9 +106,7 @@ public class Vue_TotalTaches extends JPanel implements Observer, Scrollable{
 		this.taches = taches;
 	}
 	
-
-	public void update(Observable o, Object arg) {
-		
+	public void revalider(){
 		if (this.getComponentCount() > taches.size()) {
 			this.remove(taches.size());
 		}
@@ -119,6 +124,10 @@ public class Vue_TotalTaches extends JPanel implements Observer, Scrollable{
 		rempliTache();
 		afficheTache();
 		this.revalidate();
+	}
+
+	public void update(Observable o, Object arg) {
+		revalider();
 	}
 
 	@Override

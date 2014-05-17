@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 import modele.Ordonnanceur;
+import modele.Tache;
 import vues.Vue_NouvelleTache;
 
 public class BoutonOKNouvelleTache implements ActionListener{
@@ -23,7 +24,18 @@ public class BoutonOKNouvelleTache implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		ord.nouvelleTache(nvleTache.getIntitule(), nvleTache.getDuree(), nvleTache.getPriorite());
-		this.nvleTache.dispose();//Pour fermer la fenêtre
+		simule(Tache.temps);
+		this.nvleTache.dispose();//Pour fermer la fenï¿½tre
+	}
+	
+	void simule(int temps){
+		int choixTri = ord.getBarreOutils().getTypeDeTri().getSelectedIndex();
+		ord.reInitialisation();
+		for (int i = 0; i < temps; i++) {
+			ord.incrementeTemps();
+			ord.getListe().miseAJour();
+		}
+		ord.getBarreOutils().getTypeDeTri().setSelectedIndex(choixTri);
 	}
 
 }

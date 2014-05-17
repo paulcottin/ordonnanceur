@@ -3,11 +3,22 @@ package vues;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import controleurs.ModifierTacheListener;
+import controleurs.SupprimerTacheListener;
 
 import modele.Ordonnanceur;
 import modele.Tache;
@@ -23,10 +34,13 @@ public class Vue_Tache extends JPanel implements Observer{
 	private Color couleurTacheTraitee = Color.gray;
 	private Color couleurTacheTraitement = Color.white;
 	private JLabel numeroLabel, intituleLabel, arriveLabel, dureeLabel, prioriteLabel, etatLabel;
+	private JButton modifier, supprimer;
+	private int index;
 	
-	public Vue_Tache(Ordonnanceur ord,int numero, String intitule, int arrive, int duree, int priorite, int etat){
+	public Vue_Tache(Ordonnanceur ord,int numero, String intitule, int arrive, int duree, int priorite, int etat, int index){
 		this.ord = ord;
 		this.ord.addObserver(this);
+		this.index = index;
 		this.numeroLabel = new JLabel(String.valueOf(numero));
 		this.intituleLabel = new JLabel(intitule);
 		this.arriveLabel = new JLabel(String.valueOf(arrive));
@@ -60,13 +74,39 @@ public class Vue_Tache extends JPanel implements Observer{
 			break;
 		}
 		
-		this.setLayout(new GridLayout(1, 6));
+		modifier = new JButton();
+		try {
+		    Image img = ImageIO.read(new File("data/modifier.gif"));
+		    modifier.setIcon(new ImageIcon(img));
+		  } catch (IOException ex) {
+			  ex.printStackTrace();
+		  }
+		modifier.setContentAreaFilled(false);
+		modifier.setBorderPainted(false);
+		
+		supprimer = new JButton();
+		try {
+		    Image img = ImageIO.read(new File("data/supprimer.png"));
+		    supprimer.setIcon(new ImageIcon(img));
+		  } catch (IOException ex) {
+			  ex.printStackTrace();
+		  }
+		supprimer.setContentAreaFilled(false);
+		supprimer.setBorderPainted(false);
+		
+		System.out.println("index à modifier : "+this.index);
+		modifier.addActionListener(new ModifierTacheListener(ord, this.index));
+		supprimer.addActionListener(new SupprimerTacheListener(ord));
+		
+		this.setLayout(new GridLayout(1, 8));
 		this.add(numeroLabel);
 		this.add(intituleLabel);
 		this.add(arriveLabel);
 		this.add(dureeLabel);
 		this.add(prioriteLabel);
 		this.add(etatLabel);
+		this.add(modifier);
+		this.add(supprimer);
 		
 		this.setPreferredSize(new Dimension(getWidth(), 20));
 	}
@@ -99,6 +139,30 @@ public class Vue_Tache extends JPanel implements Observer{
 
 	public void setCouleurTacheTraitement(Color couleurTacheTraitement) {
 		this.couleurTacheTraitement = couleurTacheTraitement;
+	}
+
+	public JButton getModifier() {
+		return modifier;
+	}
+
+	public JButton getSupprimer() {
+		return supprimer;
+	}
+
+	public JLabel getNumeroLabel() {
+		return numeroLabel;
+	}
+
+	public void setNumeroLabel(JLabel numeroLabel) {
+		this.numeroLabel = numeroLabel;
+	}
+
+	public JLabel getArriveLabel() {
+		return arriveLabel;
+	}
+
+	public void setArriveLabel(JLabel arriveLabel) {
+		this.arriveLabel = arriveLabel;
 	}
 
 }

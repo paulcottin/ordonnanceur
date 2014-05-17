@@ -2,8 +2,12 @@ package controleurs;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 
 import modele.Ordonnanceur;
+import modele.Tache;
 
 public class TimerListener implements ActionListener{
 
@@ -26,5 +30,4 @@ public class TimerListener implements ActionListener{
 		}
 		ord.getListe().miseAJour();
 	}
-
 }

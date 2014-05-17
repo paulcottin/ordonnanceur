@@ -26,8 +26,8 @@ public class Vue_Statistiques extends JPanel implements Observer{
 		this.ord = ord;
 		this.ord.addObserver(this);
 		
-		tempsMoyenSejour = new JLabel("Temps moyen s\u00E9jour : "+this.ord.getStats().getTempsMoyenSejour());
-		tempsMoyenAttente = new JLabel("Temps moyen attente : "+this.ord.getStats().getTempsMoyenAttente());
+		tempsMoyenSejour = new JLabel("Temps moyen de s\u00E9jour : "+String.valueOf(this.ord.getStats().getTempsMoyenSejour()).substring(0, 3));
+		tempsMoyenAttente = new JLabel("Temps moyen d'attente : "+String.valueOf(this.ord.getStats().getTempsMoyenAttente()).substring(0, 3));
 		nbChangementContexte = new JLabel("Nombre de changements de contexte : "+this.ord.getStats().getNbChangementContexte());
 		JLabel espace1 = new JLabel(" ;  ");
 		JLabel espace2 = new JLabel(" ;  ");
@@ -44,8 +44,8 @@ public class Vue_Statistiques extends JPanel implements Observer{
 	@Override
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
-		tempsMoyenSejour.setText("Temps moyen s\u00E9jour : "+this.ord.getStats().getTempsMoyenSejour());
-		tempsMoyenAttente.setText("Temps moyen attente : "+this.ord.getStats().getTempsMoyenAttente());
+		tempsMoyenSejour.setText("Temps moyen de s\u00E9jour : "+String.valueOf(this.ord.getStats().getTempsMoyenSejour()).substring(0, 3));
+		tempsMoyenAttente.setText("Temps moyen d'attente : "+String.valueOf(this.ord.getStats().getTempsMoyenAttente()).substring(0, 3));
 		nbChangementContexte.setText("Nombre de changement de contexte : "+this.ord.getStats().getNbChangementContexte());
 		
 		this.revalidate();

@@ -3,6 +3,7 @@ package modele;
 import java.util.Observable;
 
 import vues.Vue_BarreOutils;
+import vues.Vue_DiagrammeFenetre;
 import vues.Vue_TotalTaches;
 
 public class Ordonnanceur extends Observable{
@@ -11,6 +12,7 @@ public class Ordonnanceur extends Observable{
 	Vue_BarreOutils barreOutils;
 	Fenetre fen;
 	Statistiques stats;
+	Vue_DiagrammeFenetre diagrammeFenetre;
 	
 	/**
 	 * Constructeur Ordonnanceur
@@ -33,11 +35,27 @@ public class Ordonnanceur extends Observable{
 	/**
 	 * Remise à zéro du temps, de l'état des tâches, du choix du tri
 	 */
-	public void initialisation(){
+	public void reInitialisation(){
 		Tache.setCompteurArrivee(0);
 		Tache.temps = 0;
 		barreOutils.getTypeDeTri().setEnabled(true);
 		barreOutils.getTypeDeTri().setSelectedIndex(0);
+		
+		for (Tache t : liste.getListe()) {
+			t.setEtat(Tache.ATTENTE);
+			t.setAvancement(0);
+		}
+		stats.setNbChangementContexte(0);
+		stats.setTempsMoyenAttente(0);
+		stats.setTempsMoyenSejour(0);
+		
+		setChanged();
+		notifyObservers();
+	}
+	
+	public void initialisation(){
+		Tache.setCompteurArrivee(0);
+		Tache.temps = 0;
 		
 		for (Tache t : liste.getListe()) {
 			t.setEtat(Tache.ATTENTE);
@@ -73,6 +91,22 @@ public class Ordonnanceur extends Observable{
 		notifyObservers();
 	}
 	
+	public void supprimerTache(int i){
+		liste.getListe().remove(i);
+		vues.getTaches().remove(vues.getTaches().size()-1);
+		for (int j = 0; j < liste.getListe().size(); j++) {
+			System.out.println(liste.getListe().get(j).getNumero());
+		}
+		System.out.println("----------");
+		int cpt = 0;
+		for (int j = 0; j < vues.getTaches().size(); j++) {
+			cpt++;
+		}
+		System.out.println(cpt);
+		vues.revalider();
+		setChanged();
+		notifyObservers();
+	}
 	/**
 	 * politique de tri fifo
 	 */
@@ -126,6 +160,17 @@ public class Ordonnanceur extends Observable{
 		setChanged();
 		notifyObservers();
 	}
+	
+	public void triParNumero(){
+		liste.triParNumero();
+		setChanged();
+		notifyObservers();
+	}
+	
+	@SuppressWarnings("unused")
+	public void dessineDiagramme(){
+		 diagrammeFenetre = new Vue_DiagrammeFenetre(this);
+	}
 
 	public Liste getListe() {
 		return liste;
@@ -167,6 +212,18 @@ public class Ordonnanceur extends Observable{
 
 	public void setStats(Statistiques stats) {
 		this.stats = stats;
+	}
+
+	public Vue_TotalTaches getVues() {
+		return vues;
+	}
+
+	public Fenetre getFen() {
+		return fen;
+	}
+
+	public Vue_DiagrammeFenetre getDiagrammeFenetre() {
+		return diagrammeFenetre;
 	}
 
 }

@@ -15,6 +15,7 @@ import javax.swing.JToolBar;
 import modele.Ordonnanceur;
 import modele.Tache;
 import controleurs.ChoixTriListener;
+import controleurs.DiagrammeBoutonListener;
 import controleurs.InitialisationListener;
 import controleurs.NouvelleTacheListener;
 import controleurs.TimerListener;
@@ -27,10 +28,11 @@ public class Vue_BarreOutils extends JToolBar implements Observer{
 	private static final long serialVersionUID = 1L;
 	
 	private JButton nouvelleTache = new JButton("Nouvelle t\u00e2che");
+	private JButton diagramme = new JButton("Diagramme");
 	private JButton timerPlus, timerMoins, initialisation;
 	private JLabel timerLabel;
 	
-	String[] choixTriItems = {"Choix du tri", "FIFO (First In First Out)", "SFJ (Shortest Job First)", "RR(q) (Round Robin(q))", "PR (Priority)", "PFIFO (Preemptive First In First Out)", "SRT (Shortest Remaining Time)"};
+	String[] choixTriItems = {"Choix du tri", "FIFO (First In First Out)", "SFJ (Shortest Job First)", "RR(q) (Round Robin(q))", "PR (Priority)", "PFIFO (Preemptive First In First Out)", "SRT (Shortest Remaining Time)", "Par numéro"};
 	private JComboBox<String> typeDeTri = new JComboBox<String>(choixTriItems);
 	
 	
@@ -47,20 +49,22 @@ public class Vue_BarreOutils extends JToolBar implements Observer{
 		timerMoins = new JButton("-");
 		timerMoins.setEnabled(false);
 		timerPlus.setEnabled(false);
+		diagramme.setEnabled(false);
 		
 		nouvelleTache.addActionListener(new NouvelleTacheListener(this.ord));
 		typeDeTri.addActionListener(new ChoixTriListener(this.ord));
 		timerPlus.addActionListener(new TimerListener(this.ord));
 		timerMoins.addActionListener(new TimerListener(this.ord));
 		initialisation.addActionListener(new InitialisationListener(this.ord));
+		diagramme.addActionListener(new DiagrammeBoutonListener(ord));
 		
 		setFloatable(false);
 		
 		this.add(nouvelleTache);
 		this.addSeparator();
 		this.add(typeDeTri);
-		//this.addSeparator();
-		//this.add(timerMoins);
+		this.addSeparator();
+		this.add(diagramme);
 		this.addSeparator();
 		this.add(timerLabel);
 		this.addSeparator();
@@ -116,6 +120,14 @@ public class Vue_BarreOutils extends JToolBar implements Observer{
 
 	public void setNouvelleTache(JButton nouvelleTache) {
 		this.nouvelleTache = nouvelleTache;
+	}
+
+	public JButton getDiagramme() {
+		return diagramme;
+	}
+
+	public void setDiagramme(JButton diagramme) {
+		this.diagramme = diagramme;
 	}
 
 }

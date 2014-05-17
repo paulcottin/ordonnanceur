@@ -1,9 +1,12 @@
 package modele;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class Statistiques {
 
-	private int tempsMoyenSejour;
-	private int tempsMoyenAttente;
+	private double tempsMoyenSejour;
+	private double tempsMoyenAttente;
 	private int nbChangementContexte;
 	private Ordonnanceur ord;
 	
@@ -18,29 +21,70 @@ public class Statistiques {
 	 * Calcul des statistiques
 	 */
 	public void calcul() {
-		// voir http://fr.wikipedia.org/wiki/Th%C3%A9orie_des_files_d'attente
-		int mu = 1;				//temps moyen de service
-		int lambda = 2;			//fréquence moyenne d'arrivee 
-		int A = lambda / mu;	//trafic offert
-
-		this.tempsMoyenSejour = 1/mu * 1/(1-A);
-		this.tempsMoyenAttente = 1/(mu * (1-A));
-		this.nbChangementContexte++;//A modifier
+		HashMap<Integer, Integer> contexte = new HashMap<Integer, Integer>();
+		double sommeSejour = 0.0000;
+		double sommeAttente = 0.000;
+		double tpsSejour = 0.000;
+		double tpsAttente = 0.000;
+		int tempsTotal = 0;
+		for (Tache t : ord.getListe().getListe()) {
+			tpsSejour = 0;
+			tpsAttente = 0;
+			for (int i = 0; i < ord.liste.getListe().indexOf(t)+1; i++) {
+				tpsSejour = tpsSejour + ord.getListe().getListe().get(i).getDuree();
+			}
+			tpsSejour = tpsSejour - t.getArrivee();
+			tpsAttente = tpsSejour - t.getDuree();
+			tempsTotal = tempsTotal + t.getDuree();
+			
+			sommeAttente = sommeAttente + tpsAttente;
+			sommeSejour = sommeSejour + tpsSejour;
+		}
+		
+		for (int i = 0; i < tempsTotal; i++) {
+			actualisationContexte(contexte);
+			ord.incrementeTemps();
+			ord.getListe().miseAJour();
+			if (changementContexte(contexte, ord.getListe().getListe())) {
+				nbChangementContexte++;
+			}
+		}
+		ord.initialisation();
+		ord.getBarreOutils().getTypeDeTri().setEnabled(true);
+		ord.getBarreOutils().getTimerMoins().setEnabled(false);
+		ord.getBarreOutils().getTimerPlus().setEnabled(false);
+		ord.getBarreOutils().getNouvelleTache().setEnabled(true);
+		
+		tempsMoyenSejour = (sommeSejour / ord.getListe().getListe().size());
+		tempsMoyenAttente = sommeAttente / ord.getListe().getListe().size();
 	}
+	
+	boolean changementContexte(HashMap<Integer, Integer> contexte, ArrayList<Tache> liste){
+		boolean rep = false;
+		for (Tache t : liste) {
+			if (contexte.get(t.getNumero()) != t.getEtat()) {
+				return true;
+			}
+		}
+		return rep;
+	}
+	
+	void actualisationContexte(HashMap<Integer, Integer> contexte){
+		for (Tache t : ord.getListe().getListe()) {
+			contexte.put(t.getNumero(), t.getEtat());
+		}
+	}
+
 
 	/**
 	 * Moyenne des durées
 	 * @return : Le temps moyen de séjour (int)
 	 */
-	public int getTempsMoyenSejour() {
-		int somme = 0;
-		for (Tache t : ord.getListe().getListe()) {
-			somme = somme + t.getDuree();
-		}
-		return (somme / ord.getListe().getListe().size());
+	public double getTempsMoyenSejour() {
+		return tempsMoyenSejour;
 	}
 
-	public int getTempsMoyenAttente() {
+	public double getTempsMoyenAttente() {
 		return tempsMoyenAttente;
 	}
 
